@@ -1,0 +1,805 @@
+{
+  "id": "wz-01",
+  "source": "2026-11-11 用户人工标注（m09586 色环语义），网格按列 step118/相位72、行 step110/相位71 拟合",
+  "grid": {
+    "cols": [
+      485,
+      603,
+      721,
+      839,
+      957,
+      1075,
+      1193,
+      1311,
+      1429,
+      1547
+    ],
+    "rows": [
+      236,
+      346,
+      456,
+      566,
+      676
+    ],
+    "stepX": 118,
+    "stepY": 110,
+    "rowsBoard": [
+      236,
+      346,
+      456,
+      566,
+      676
+    ],
+    "rowEquip": 786,
+    "rowDeck": 896
+  },
+  "cells": [
+    {
+      "px": [
+        485,
+        236
+      ],
+      "col": 0,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        603,
+        236
+      ],
+      "col": 1,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        721,
+        236
+      ],
+      "col": 2,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        839,
+        236
+      ],
+      "col": 3,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        957,
+        236
+      ],
+      "col": 4,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1075,
+        236
+      ],
+      "col": 5,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1193,
+        236
+      ],
+      "col": 6,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1311,
+        236
+      ],
+      "col": 7,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1429,
+        236
+      ],
+      "col": 8,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1547,
+        236
+      ],
+      "col": 9,
+      "row": 0,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        485,
+        346
+      ],
+      "col": 0,
+      "row": 1,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        603,
+        346
+      ],
+      "col": 1,
+      "row": 1,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        725,
+        347
+      ],
+      "col": 2,
+      "row": 1,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        845,
+        348
+      ],
+      "col": 3,
+      "row": 1,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        964,
+        350
+      ],
+      "col": 4,
+      "row": 1,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1081,
+        351
+      ],
+      "col": 5,
+      "row": 1,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1196,
+        353
+      ],
+      "col": 6,
+      "row": 1,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1311,
+        354
+      ],
+      "col": 7,
+      "row": 1,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1429,
+        346
+      ],
+      "col": 8,
+      "row": 1,
+      "kind": "path",
+      "walk": true,
+      "deploy": false
+    },
+    {
+      "px": [
+        1547,
+        346
+      ],
+      "col": 9,
+      "row": 1,
+      "kind": "gate_red",
+      "walk": true,
+      "deploy": false,
+      "gate": "red"
+    },
+    {
+      "px": [
+        485,
+        456
+      ],
+      "col": 0,
+      "row": 2,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        603,
+        456
+      ],
+      "col": 1,
+      "row": 2,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        715,
+        444
+      ],
+      "col": 2,
+      "row": 2,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        840,
+        445
+      ],
+      "col": 3,
+      "row": 2,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        957,
+        456
+      ],
+      "col": 4,
+      "row": 2,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1086,
+        447
+      ],
+      "col": 5,
+      "row": 2,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1207,
+        448
+      ],
+      "col": 6,
+      "row": 2,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1326,
+        449
+      ],
+      "col": 7,
+      "row": 2,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1429,
+        456
+      ],
+      "col": 8,
+      "row": 2,
+      "kind": "path",
+      "walk": true,
+      "deploy": false
+    },
+    {
+      "px": [
+        1547,
+        456
+      ],
+      "col": 9,
+      "row": 2,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        485,
+        566
+      ],
+      "col": 0,
+      "row": 3,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        603,
+        566
+      ],
+      "col": 1,
+      "row": 3,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        704,
+        550
+      ],
+      "col": 2,
+      "row": 3,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        835,
+        551
+      ],
+      "col": 3,
+      "row": 3,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        957,
+        566
+      ],
+      "col": 4,
+      "row": 3,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1075,
+        566
+      ],
+      "col": 5,
+      "row": 3,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1218,
+        552
+      ],
+      "col": 6,
+      "row": 3,
+      "kind": "high",
+      "walk": false,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1342,
+        552
+      ],
+      "col": 7,
+      "row": 3,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1429,
+        566
+      ],
+      "col": 8,
+      "row": 3,
+      "kind": "path",
+      "walk": true,
+      "deploy": false
+    },
+    {
+      "px": [
+        1547,
+        566
+      ],
+      "col": 9,
+      "row": 3,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        485,
+        676
+      ],
+      "col": 0,
+      "row": 4,
+      "kind": "gate_blue",
+      "walk": true,
+      "deploy": false,
+      "gate": "blue"
+    },
+    {
+      "px": [
+        603,
+        676
+      ],
+      "col": 1,
+      "row": 4,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        692,
+        667
+      ],
+      "col": 2,
+      "row": 4,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        829,
+        667
+      ],
+      "col": 3,
+      "row": 4,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        957,
+        676
+      ],
+      "col": 4,
+      "row": 4,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1075,
+        676
+      ],
+      "col": 5,
+      "row": 4,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1193,
+        676
+      ],
+      "col": 6,
+      "row": 4,
+      "kind": "blank",
+      "walk": false,
+      "deploy": false
+    },
+    {
+      "px": [
+        1360,
+        665
+      ],
+      "col": 7,
+      "row": 4,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1489,
+        665
+      ],
+      "col": 8,
+      "row": 4,
+      "kind": "ground",
+      "walk": true,
+      "deploy": true,
+      "pxSource": "measured-2026-11-10"
+    },
+    {
+      "px": [
+        1547,
+        676
+      ],
+      "col": 9,
+      "row": 4,
+      "kind": "gate_red",
+      "walk": true,
+      "deploy": false,
+      "gate": "red"
+    }
+  ],
+  "equipDeck": [
+    [
+      821,
+      775
+    ],
+    [
+      963,
+      775
+    ],
+    [
+      1104,
+      775
+    ],
+    [
+      1246,
+      775
+    ],
+    [
+      1388,
+      775
+    ]
+  ],
+  "unitDeck": [
+    [
+      217,
+      911
+    ],
+    [
+      366,
+      912
+    ],
+    [
+      514,
+      913
+    ],
+    [
+      662,
+      914
+    ],
+    [
+      810,
+      915
+    ],
+    [
+      958,
+      916
+    ],
+    [
+      1106,
+      917
+    ],
+    [
+      1255,
+      918
+    ],
+    [
+      1403,
+      919
+    ],
+    [
+      1551,
+      921
+    ]
+  ],
+  "deployOrder": {
+    "source": "用户 m02460（近战 5 6 4 → 远程 2 8 / (3,2)）+ m02616（重装靠右、输出靠左）+ m04641（2026-11-13：前后排别拉太开，医疗要能奶到前排盾；坦克站敌人必经格；远程别顶到前排）",
+    "defaultFacing": "right",
+    "melee": [
+      [
+        4,
+        1,
+        "right"
+      ],
+      [
+        3,
+        1,
+        "right"
+      ],
+      [
+        5,
+        1,
+        "right"
+      ]
+    ],
+    "ranged": [
+      [
+        5,
+        2,
+        "right"
+      ],
+      [
+        6,
+        2,
+        "right"
+      ],
+      [
+        2,
+        2,
+        "right"
+      ]
+    ],
+    "healer": [
+      [
+        6,
+        2,
+        "right"
+      ],
+      [
+        7,
+        2,
+        "right"
+      ],
+      [
+        5,
+        2,
+        "right"
+      ]
+    ],
+    "tank": [
+      [
+        6,
+        1,
+        "right"
+      ],
+      [
+        5,
+        1,
+        "right"
+      ],
+      [
+        7,
+        1,
+        "right"
+      ]
+    ],
+    "tankNote": "用户 m02614/m02616（2026-11-12）：重装最多 1~2 个，靠右放（敌人从右侧红门进来）；输出靠左。超出 2 个的重装按近战序列放。",
+    "formationNote": "row1 (3..7,1) 是敌人走的通道 → 坦克/近卫站这儿挡；row2 (5,2)(6,2) 是高台 → 医疗站 (6,2) 紧贴 (6,1) 的坦克，远程站 (5,2)/(2,2) 在近战后侧"
+  },
+  "equipSlots": {
+    "all": [
+      [
+        821,
+        775
+      ],
+      [
+        963,
+        775
+      ],
+      [
+        1104,
+        775
+      ],
+      [
+        1246,
+        775
+      ],
+      [
+        1388,
+        775
+      ]
+    ],
+    "used": [
+      [
+        1246,
+        775
+      ],
+      [
+        1388,
+        775
+      ]
+    ]
+  },
+  "shopTrigger": [
+    1650,
+    940
+  ],
+  "gates": {
+    "blue": [
+      [
+        485,
+        676
+      ]
+    ],
+    "red": [
+      [
+        1547,
+        346
+      ],
+      [
+        1547,
+        676
+      ]
+    ]
+  },
+  "notes": "绿=敌走+可部署(ground)；黄=敌不走+可部署(high)；紫=敌走+不可部署(path)；蓝/红=门；空白=无效格,未知待核：1075,346 与 1075,456 的颜色、676 行 957/1075/1193 是否空白、商店触发点精确圆心\n甲板坐标 2026-11-11 由用户圈心实测（商店折叠态）。间距：装备 142 / 干员 148.2，y 逐格微漂属透视。展开态会整体平移 40~150px，一律先折叠再操作。\n2026-11-11 14:2x：19 个可部署格的 px 全部改成用户手画实测点（原先是从 grid 拟合出来的，第 4 行差 60px）。"
+}

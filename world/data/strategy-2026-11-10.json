@@ -1,0 +1,470 @@
+{
+  "meta": {
+    "title": "明日方舟·卫戍协议·规程（第四期）B站攻略学习笔记：决策 / 抓卡 / 回合节奏",
+    "season": "卫戍协议·规程（2026-11-08 16:00 起常驻）",
+    "capturedAt": "2026-11-10",
+    "taskRef": "用户要求：把 B 站「卫戍协议（规程赛季）」攻略/实况学一遍，回答升店/刷新/冻洁/卖卡/补强、抓什么干员、按回合节奏三问",
+    "validityRule": "只采信 2026-11-08（规程开赛）之后的视频。第一期（2026-03 起，如 BV1vqw3zyEiY）与规程前前瞻（BV1eE4M6jEKt 2026-11-03、BV1kX4q61EUi 2026-11-06）一律不作本文件依据。",
+    "method": "B 站字幕（ai-zh）逐条检索关键词（升本/本/刷新/D牌/冻洁/卖/回合/对子），取原文直述句；拿不到字幕或字幕时间轴与视频时长不符的（flagged）不采信。",
+    "quoteNote": "quote 为字幕原文（ASR），多行字幕用 ' / ' 连接，未改字词；ASR 同音错字保留原样（如「黑剑」=黑键、「雷妙安/林妙安」=蕾缪安、「车尼尔」=车尔尼、「罗哥」=逻各斯、「纯爱」=纯烬艾雅法拉），释义写在 claim 里。",
+    "confidencePolicy": "fact=字幕原文直述；inference=由原文/多条事实推导，视频未直述。",
+    "counts": {
+      "sources": 6,
+      "decisions": 20,
+      "lineup": 20,
+      "tempo": 14
+    },
+    "sources": [
+      {
+        "id": "BV144WJ6fEDC",
+        "url": "https://www.bilibili.com/video/BV144WJ6fEDC",
+        "title": "【明日方舟】卫戍协议：规程全攻略教程",
+        "up": "晓杰425",
+        "pubdate": "2026-11-08",
+        "duration": 583,
+        "view": 39582,
+        "subtitle": "ai-zh 干净（时间轴 423s ≤ 583s）",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "BV1CwWW6aEjh",
+        "url": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+        "title": "【卫戍协议∶规程】新版本最爽盟约—乌萨斯公式化运营一图流！",
+        "up": "白樱iridescent",
+        "pubdate": "2026-11-08",
+        "duration": 329,
+        "view": 92621,
+        "subtitle": "ai-zh 干净（170s ≤ 329s）",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "BV1iLWW6XEUk",
+        "url": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+        "title": "卫戍协议-规程，莱塔尼亚轮椅思路，绝境游龙。",
+        "up": "璀璨花火拥抱繁星",
+        "pubdate": "2026-11-08",
+        "duration": 2144,
+        "view": 30003,
+        "subtitle": "ai-zh 干净（P1 357s / P2 1787s，1389s ≤ 2144s）",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "BV1HaW46zEN2",
+        "url": "https://www.bilibili.com/video/BV1HaW46zEN2",
+        "title": "【卫戍协议∶规程】新版本轮椅盟约莱塔尼亚公式化运营一图流",
+        "up": "澈澈Fault",
+        "pubdate": "2026-11-09",
+        "duration": 487,
+        "view": 21421,
+        "subtitle": "ai-zh 干净（487s ≤ 487s）",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "BV1wpWp6FEki",
+        "url": "https://www.bilibili.com/video/BV1wpWp6FEki",
+        "title": "卫戍协议-规程，千杯老登的苟分心得，只要不玩大盟约，后期都能爽玩",
+        "up": "晴空丶clear",
+        "pubdate": "2026-11-08",
+        "duration": 3901,
+        "view": 177883,
+        "subtitle": "ai-zh 干净（864s ≤ 3901s，P1 实为前 864s）",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "BV1k1WW6AEx7",
+        "url": "https://www.bilibili.com/video/BV1k1WW6AEx7",
+        "title": "卫戍协议·规程】可胡可稳的伊比利亚思路分享！",
+        "up": "白绮Infinity",
+        "pubdate": "2026-11-09",
+        "duration": 376,
+        "view": 44072,
+        "subtitle": "ai-zh 干净（375s ≤ 376s）",
+        "capturedAt": "2026-11-10"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "claim": "钱留不下来：每回合给的钱必须在当局花完，不存在存钱攒利息（只有选特定「奸商」策略例外）。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "但是没办法存下来的 / 所以这边的话呢你的钱要在当局内花完",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "每回合可用资金随回合数上涨，所以越往后越买得起，前期穷、后期富。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "就比如说现在回合数越高 / 那么这边提供的值就越高",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "商店等级（升本）没有唯一答案，看阵容：打前期阵容四级够用，要 C 到后期（如大炎）才考虑升满级六本。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "一般来说建议大家升级的话 / 如果是打前期阵容的话 / 是四级够用 / 但如果说你是要C到后期的阵容 / 比如说炎国这样的阵容 / 那么这边就得考虑升到满级",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "卖干员只回收固定 1 块钱（少数角色有加成），所以「买低阶再卖」是纯亏，钱要一次性花在刀刃上。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "你买了一个干员卖掉 / 他只会获得固定的一块钱 / 除非某些角色可能会有特殊的加成 / 不然的话你都是获得一块钱的",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "冻结的正规用法：五/六本的关键启动卡先冻结在货架上，等把商店等级拉上去之后再回来买，用等级差跳过随机。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "在五阶或者六阶的环境下 / 你可以通过锁定把这里有一个冻结键冻结它 / 然后冻结完了之后 / 你的话呢可以到时候拉完等级之后 / 再去把它买掉 / 那么这边我们就可以用种冻结的方式来 / 更快获得我们队伍的启动点",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "升级和刷新的取舍：有对子优先拿下对子（找对碰），宁可不升本；对子能直接转化成更高一阶的卡。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "嗯嗯这个地方可以升本 / 但是我们好像可以找对碰 / 我们有对子 / 一定要优先拿下 / 后面就好打很多了",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "对子（三合一）是最高优先级，作者原话「找对碰是一定不会错的」；为了对子可以「慢升本」。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "那就慢升本拿慢升本全拿了啊 / 有对碰有对碰 / 找对碰是一定不会错的哦",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "二本不停留、直接跳三本碰牌（莱塔尼亚体系）；二本卡池被认为「基本没啥用」。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "然后我们二本我们二本不碰 / 我们到三本去碰 / 三本碰",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "三本只为一个目标停留：找到黑键（黑剑）就立刻升四本，之后在刷新里找艾雅法拉。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "在莱塔尼亚找到黑剑 / 黑剑跟AR法拉 / 其实找到黑键就可以了 / 找到黑剑 / 我们就升到四本资本 / 在D的时候去找到艾雅法拉",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "不要升六本：六本卡池脏、好卡就几张，正确做法是停五本用五本商店去「碰」六本卡。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "你三本拿四本的卡 / 四本拿五本的卡 / 然后你直接不升不升六本 / 你直接一直用五本去碰六本就好了 / 六本的卡池非常的脏 / 好用的就那么几个",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "伊比利亚体系同样主张「烂在五本」：够用就停五本，不为了六本继续烧钱升本。",
+      "source": "https://www.bilibili.com/video/BV1k1WW6AEx7",
+      "quote": "如果没有星级的话 / 或者打算就直接烂在五本",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "该补强而不是升级的判据：手里什么都不差、又没有对子可追时，才把钱拿去升本；反之（有对子/缺关键卡）先刷新找牌。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "嗯像现在这种 / 我们什么都不差了 / 又没有对子 / 那你升一下本也是可以的",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    },
+    {
+      "claim": "升三本的时点要看战力：四~五回合升三，前提是场上战力够，否则先补强。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "也只是一个大概三回合升二 / 四回合或者五回合升三 / 看场上的战力是否足够",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "停本刷牌的时点：拿到本家关键卡（乌萨斯：唯一+霍尔海雅）后停在四本，不再升本，专心 D 牌凑对子。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "我们可以考虑升到四本 / 或者说我们是已经在四本碰到的 / 我们就在这开始不升本D牌 / 找到足够多的对子去把动和给找出来",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "一二本阶段可以随便刷新，不必省着（1 本卡池随便刷）。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "nice jo1本随便刷就行",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    },
+    {
+      "claim": "1 块钱的低阶卡（如真理）见到就买，因为卖也只卖 1 块，留着还能吃三合一进阶。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "那么真理因为只卖一块钱 / 我建议就是见到就买 / 我们可以等到上四本以后再进行一个进阶",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "三四本之间的提升不大，为了升本放弃找本家牌不划算。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "升三本的话找牌其实找的就不是本家的牌 / 在三四本的提升其实并没有那么大",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "花钱优先级：先把阵容凑齐，再考虑买装备/武器；不成体系的武器加成是浪费钱（作者称其为「蛆」）。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "所以这边其实如果说你不是玩特定阵容的话 / 其实这些装备是不用去考虑的 / 一般来说有条件的还是先把阵容凑出来之后 / 咱们再去考虑这种装备的问题",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "经济类盟约/合约在本期被削，不要指望靠经济滚雪球，所以「什么时候该补强」比「怎么攒钱」更重要。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "因为这次经济类的海克斯呸 / 合约被削了之后 / 像是那种投资人啦 / 远见 / 属于能开就开 / 不能开就算了 / 也不强",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "本期整体经济发育被卡死，不能按上一期「倒转/滚钱」的打法运营。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "然后呢这个版本呢对于经济发育这一块呢 / 也是不是那么顺畅 / 卡的比较死",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    }
+  ],
+  "lineup": [
+    {
+      "claim": "总方针：以「小盟约」为主体系，大盟约十个里有六个已废，别围绕大盟约构筑。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "推荐大家呢还是去以这个小盟约为主 / 不要去以大盟约为主 / 十个盟约里面有六个盟约去完了",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "精准是本版本最通用的输出小盟约，叠层手是空弦，主战力是蕾缪安，霍尔海雅/迷迭香同为可选核心。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "一个是这个格雷伊啊 / 叠成手是空弦 / 迷迭香 / 霍尔海雅和这个雷妙安 / 主要拿的对象雷缪安是后期的主战力",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "蕾缪安只吃精准加成，没有精准就是废卡——所以精准必须先在场上立住。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "因为雷妙安只吃精准加成 / 这个林妙安也就是路边一条 / 有了精准加成了雷鸣环才会稍微有点战力",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "精灵小盟约非常好用，且小盟约和大盟约不冲突，可以单走一个体系。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "精灵精灵呢非常非常好用这个小盟约 / 而且小盟约呢基本上和大盟约现在不冲突 / 可以拿小盟约去单走一个体系出来",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "前排用机械师，带二技能，只求顶住不求出伤。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "然后前排的话呢建议就是机械师 / 机械师呢主要就是带这个二技能 / 去顶他顶的效率还是挺高的 / 因为只需要让他去顶住就行",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "缺奶时补华法林，也可以换成牛牛（同为奶位过渡）。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "当我们缺少这个奶量 / 我们还可以拿一拿 / 这个华法林 / 还可以换成牛牛",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "奇迹系可拿云记（水灯芯常被抢），小爻也能叠奇迹。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "一个是这个水灯芯 / 再一个呢是这个云记 / 水电芯呢因为是呃维多利亚的一个小核心 / 所以呢水中心很多时候可能抢不到 / 我们就去拿这个云记",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "新手阵容推荐阿戈尔（全家陆地兵、成型简单）与卡西米尔（好凑、对空对地都有）。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "直接玩阿戈尔就可以了 / 因为阿戈尔全家都是陆地兵啊 / 你们也可以相信马西米尔 / 我也是强烈推荐大家去使用这个羁绊",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "阿戈尔的标准道中打法：前期开出三个阿戈尔，用幽灵鲨把这三只吃掉，道中就很稳。",
+      "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+      "quote": "你只要前期开三个阿戈尔出来 / 拿幽灵鲨把它把这三只啊一吃 / 基本上道中就就非常稳定",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "乌萨斯前期三本家是折亚/烈夏/乌啾，凑三乌萨斯做叠层核心，靠真理这类 1 块卡刷三合一去抽五阶「动核」。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "首先我们选定三位本家干员 / 哲亚烈夏以及乌啾 / 我们开出三乌萨斯 / 这是本家的前期叠层核心",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "乌萨斯最终阵容：乌啾、唯一、动核、怒潮凛冬、塔露拉、霍尔海雅、青雉、轻质（有魔王可替换折亚，魔王给大羁绊次数+1）。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "最终的达成阵容组成为乌鸠唯一洞河 / 穆巢林东塔罗拉以及霍尔海雅青雉轻质 / 魔王这次的属性是调和 / 能够给我方的大羁绊次数加一",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "莱塔尼亚体系核心三件套：黑键（黑剑）+ 霍尔海雅 + 艾雅法拉；中期靠车尔尼发的「鼓」转给逻各斯当输出终端。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "莱塔尼亚最核心的时间是以黑剑为基础 / 霍尔海雅黑剑还有小羊 / 中后期在抓到车尼尔之后 / 车尼尔会会发你一个鼓 / 这个莱塔尼亚转 / 最好是给罗哥 / 罗哥在这一次作为一个输出的终端",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "莱塔尼亚的六本牌不值得开：六莱塔尼亚「教科书上没那么强力」，可以不开。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "六莱塔尼亚你不开都行 / 六莱塔尼亚其实教科书上未能没那么强力",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "五本之后的通用叠层强卡：阿米娅（旁边人叠层额外+2，且不受上限影响）与「小猫」（直接加上限），中后期把低星过渡卡换掉。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "阿米娅跟小猫作为这一次的强叠层干员 / 是在五本之后通用的 / 边上的人叠层的时候格外加二 / 是不受那个上限影响的 / 小猫是直接加上限",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "中后期必须换掉低星过渡卡（作者点名前期的两个低星位），不是一直留着凑数。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "到中期就可以把这两边 / 中后期就可以把这两个低星干员给换掉了啊",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "过渡/工具位清单（乌萨斯视角）：卡达、克里斯汀（奥数）、陨星/波登可/轻质（迅捷）、空弦/渡桥（远见），见到就抓。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "我们可以选择奥数卡的卡达 / 以及克里斯汀 / 像陨星波登可以及轻质都是比较优的选择 / 那像远见体系中的空弦以及渡桥 / 也是我们需要优先去抓取的",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "过渡道中卡（莱塔尼亚视角）：泽亚、灰喉、陨星，带精准又能打群攻，「拿着不碍事」。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "泽亚优质道中 / 泽亚灰喉优质道中还带精准的卡拉 / 或者说有看到的现任对子 / 也直接拿这三个陨星优质群攻 / 拿着不碍事好吧",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "三合一的收益：凑三个同卡合成后去高一阶商店随机三选一，所以「能合就合」，也可以故意卡等级合成。",
+      "source": "https://www.bilibili.com/video/BV144WJ6fEDC",
+      "quote": "然后他这边的话呢买干员买三个之后可以合成 / 你的话呢可以获得更高一阶的干员 / 那么这边我就可以去二阶的商店里面 / 随机在三个里面挑一个种 / 尽量能合成 / 当然你也可以卡等级合成",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "对子在「复奏」体系里可以直接转化成战力，所以对子优先级高于升本。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "这个复奏尤其是你在玩复奏的情况下 / 对子是可以直接转化成一个",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "四阶免费卡温蒂全盟约都要抢（标题即结论，简介口径）。",
+      "source": "https://www.bilibili.com/video/BV1joWW6REgC",
+      "quote": "卫戍新晋道中幻神？四阶免费卡温蒂，全盟约都要抢！时代变了！",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    }
+  ],
+  "tempo": [
+    {
+      "round": "第1回合",
+      "do": "开局只在本家 1 本卡池随便刷，把 1 块钱的便宜卡（如真理）见到就买，攒三合一素材，不急着升级。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "nice jo1本随便刷就行",
+      "confidence": "inference"
+    },
+    {
+      "round": "第2~3回合",
+      "do": "升二本（约第 3 回合）。是否立刻升看有没有对子：有对子就先拿对子，可以「慢升本」。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "也只是一个大概三回合升二",
+      "confidence": "fact"
+    },
+    {
+      "round": "第2~3回合（对子优先）",
+      "do": "有对子时把刷新钱花在对子上，宁可晚一回合升本；原话「找对碰是一定不会错的」。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "那就慢升本拿慢升本全拿了啊 / 有对碰有对碰 / 找对碰是一定不会错的哦",
+      "confidence": "fact"
+    },
+    {
+      "round": "第3回合（二本停留与否有分歧）",
+      "do": "莱塔尼亚体系二本不停留、直接跳三本碰牌；乌萨斯体系建议二本稍停，等抓到合适阵容再升三。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "因为这次的前期压力较大 / 我建议是在二本可以稍微停留一会儿 / 等我们抓到比较合适的阵容以后 / 再往上升三再升四啊",
+      "confidence": "fact"
+    },
+    {
+      "round": "第4~5回合",
+      "do": "升三本，前提是场上战力够；三本只为找本家关键卡（莱塔尼亚找黑键、乌萨斯找霍尔海雅）。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "四回合或者五回合升三 / 看场上的战力是否足够 / 我们可以考虑在三本对出霍尔海雅",
+      "confidence": "fact"
+    },
+    {
+      "round": "三本拿到关键卡后",
+      "do": "三本一摸到黑键就立刻升四本，然后在刷新里找艾雅法拉/纯烬艾雅法拉。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "雅拉就是三本的时候疯狂的找黑键 / 然后找到黑键A亚卡拉就升四 / 然后开始疯狂的找这个纯爱",
+      "confidence": "fact"
+    },
+    {
+      "round": "第6回合",
+      "do": "第 6 回合能拿到艾雅法拉或黑键，这局就算优质局（判断自己胡没胡的检查点）。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "你能在回合六的情况下 / 你找到艾雅法拉照到黑键 / 找到两个之中的随便一个 / 你这把都是一个非常优质的局了",
+      "confidence": "fact"
+    },
+    {
+      "round": "第7回合",
+      "do": "第七回合直接升本（不再犹豫），此时本钱足够撑起四→五本的跳跃。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "七我们第七回合直接升本吧 / 直接直接升本",
+      "confidence": "fact"
+    },
+    {
+      "round": "四本阶段",
+      "do": "停在四本不升本，专心 D 牌凑对子，用三合一去对五阶卡（约 5~6 次对子能出目标）。",
+      "source": "https://www.bilibili.com/video/BV1CwWW6aEjh",
+      "quote": "我们就在这开始不升本D牌 / 找到足够多的对子去把动和给找出来 / 用三合一去对差不多五六次吧",
+      "confidence": "fact"
+    },
+    {
+      "round": "第9回合",
+      "do": "纯烬艾雅法拉第 9 回合到场是理想节奏，能撑到后期 250~260 层。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "纯爱能第九回合来 / 你打到最终章你就得两百五两百六十才了",
+      "confidence": "fact"
+    },
+    {
+      "round": "第10~11回合",
+      "do": "理想中后期阵容成型期；此前都算过渡，别指望十回合前打完体系。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "基本上都是第十回合 / 第十或者第11回合了 / 才能做到中后期的理想阵容",
+      "confidence": "fact"
+    },
+    {
+      "round": "第11~12回合",
+      "do": "五本阶段：找艾雅法拉/缪尔赛思继续叠；实测 11~12 回合拿到成年艾雅法拉时莱塔尼亚已 197 层。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "你看我们是11还是12回合拿到的 / 成年雅法拉 / 我们叠了197层莱塔尼亚",
+      "confidence": "fact"
+    },
+    {
+      "round": "五本之后",
+      "do": "不升六本，一直用五本商店碰六本卡；缺什么就升本补，无对子可追时才升本。",
+      "source": "https://www.bilibili.com/video/BV1iLWW6XEUk",
+      "quote": "我们不升六 / 就是不升六 / 一直不升",
+      "confidence": "fact"
+    },
+    {
+      "round": "Boss 战前",
+      "do": "把纯叠层干员从场上撤下，换成实际输出/终端（叠层已完成，位置留给战力）。",
+      "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+      "quote": "后期到最后最后的时间可以把叠层干员下掉 / 就是打boss战的时候啊",
+      "confidence": "fact"
+    }
+  ]
+}

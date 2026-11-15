@@ -1,0 +1,15 @@
+node_modules/
+__pycache__/
+*.pyc
+*.tmp
+traces/
+logs/
+shots/
+world/.tmp/*
+!world/.tmp/.gitkeep
+data/runs.jsonl
+data/planner-compare.jsonl
+data/covenant-bar.jsonl
+world/data/*.png
+world/data/bans-*.json
+world/test/fixtures/

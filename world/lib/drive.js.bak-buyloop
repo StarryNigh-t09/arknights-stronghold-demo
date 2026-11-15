@@ -1,0 +1,894 @@
+/**
+ * drive.js — 全托管的一局：看见局面 → 决策 → 动手 → 再看见。
+ *
+ * 这一层只做「串起来」，判断都在 decide.js，动作都在 run.js，认字在 ocr.js。
+ * 目标不是打得多漂亮，是每一回合都把资金花光、能撑多远撑多远，然后把每回合的
+ * 数字记下来给 wz_review 复盘。
+ */
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { screenshot, tap } from './adb.js'
+import { readState } from './ocr.js'
+import { classifyBuffer } from './vision.js'
+import { adviseRest, levelupTableFromEconomy } from './decide.js'
+import { economy, covenantStrength, runflow, operatorPool, equipmentBook } from './knowledge.js'
+import { buildWantList, wantGaps, pickFromShop } from './wants.js'
+import { planRestStep, BENCH_CAP, EQUIP_CAP } from './restplan.js'
+import { POINTS, sleep, shopAction, playRound, waitFor, peek, placeDeckUnit, scanDeckChips, pickTactic, tacticPreference, identifyDeck, scanFreeTiles, sellDeckUnit, findDeckEquip, dragHold, diffCell, diffCells, hasFreeRefresh } from './run.js'
+import { planDeploy, pxToGrid } from './placement.js'
+import { deployTiles, mapForPlacement } from './gamemap.js'
+import { placeBatch } from './act.js'
+import { loadRoster, saveRoster, addUnit } from './roster.js'
+import { loadBoard, saveBoard, place as boardPlace } from './board.js'
+
+/** OCR 给的是罗马数字（I…VI），决策层要的是 1…6。 */
+const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6 }
+
+/**
+ * 商店升级节奏（用户 m04440：不是甲板满了才升级，是按节奏升；甲板一般不放满）。
+ *
+ * 2026-11-10 晚按 6 个攻略视频校准（world/data/strategy-2026-11-10.json）：
+ *   「三回合升二 / 四或五回合升三（看战力）/ 七回合升四 / 然后停本 D 牌凑对子」，
+ *   而且主流「不升六本，烂在五本，用五本商店碰六本卡」（六本池太脏）。
+ * 所以上限压到 5：升到 6 本在我们这个自动局里只会稀释卡池、还贵。
+ */
+export function targetShopLevel(round) {
+  const r = Number(round) || 1
+  if (r <= 3) return 2
+  if (r <= 5) return 3
+  if (r <= 8) return 4
+  return 5
+}
+
+/** 干员名 → 阶数（1…6）。数据来自 covenants-map × 攻击范围表，143 人全覆盖。 */
+let TIER_CACHE = null
+export function opTierOf(name) {
+  if (!name) return null
+  if (!TIER_CACHE) {
+    TIER_CACHE = new Map()
+    for (const op of operatorPool()) if (op && op.name) TIER_CACHE.set(op.name, Number(op.tier) || 1)
+  }
+  return TIER_CACHE.get(name) || null
+}
+
+/**
+ * 卖低阶干员凑钱（用户 m04261 定的时机：升级商店差几块就卖掉几个低阶的）。
+ * 只卖 1 阶、且不在目标清单里的人；从右往左卖（卖掉后甲板不重排，从右往左最不容易点错）。
+ * 返回实际卖到的钱（每张固定 1 块）。
+ */
+export async function sellToAfford({ need, steps = [], maxSell = 3 } = {}) {
+  const want = Math.min(Number(need) || 0, Number(maxSell) || 3)
+  if (!(want > 0)) return 0
+  // 不认人：identifyDeck 要逐个轻按甲板牌，可能把状态机推进「购买详情」把整局卡住
+  // （2026-11-10 16:35 真踩过：stop=当前不是休整期（wz_buydetail））。
+  // 甲板从左到右就是获取顺序，最左几张通常是早期低阶过渡卡 —— 直接按位置卖，卖价固定 1 块（用户 m04231）。
+  const sc = await scanDeckChips()
+  if (!sc || sc.ok === false || !sc.chips || !sc.chips.length) {
+    steps.push('  想卖卡凑钱，但甲板上扫不到牌')
+    return 0
+  }
+  const chips = sc.chips.slice().sort((a, b) => a.x - b.x)
+  if (chips.length <= 1) { steps.push('  想卖卡凑钱，但甲板只剩 1 个'); return 0 }
+  let sold = 0
+  for (const c of chips) {
+    if (sold >= want || chips.length - sold <= 1) break
+    const r = await sellDeckUnit([c.x, c.y])
+    if (r && r.ok !== false) {
+      sold += 1
+      steps.push('  卖甲板第 ' + (sold) + ' 张（最左）→ +1 块')
+    } else {
+      steps.push('  卖卡没成功（' + ((r && r.error) || '未知') + '）')
+      break
+    }
+  }
+  return sold
+}
+
+export function tierOf(v) {
+  if (typeof v === 'number' && v >= 1 && v <= 6) return v
+  const s = String(v || '').trim().toUpperCase()
+  if (ROMAN[s]) return ROMAN[s]
+  const n = Number(s)
+  return n >= 1 && n <= 6 ? n : 0
+}
+
+/** vision 的状态名 → OCR 的状态名（OCR 自己那套命名更细，但两者要能对上） */
+const VISION_TO_OCR = {
+  wz_rest: 'rest',
+  wz_prep: 'prep',
+  wz_battle: 'battle',
+  wz_settle: 'settle',
+  wz_buydetail: 'rest',
+  // 「作战结束 / 生命值减少 N」黑底横条：OCR 会把它当成休整期（底排卡还在），
+  // 2026-11-09 真机踩到 —— autoRest 在这个过场里空转、playRound 点准备就绪无效。
+  wz_warbanner: 'warbanner',
+}
+
+/**
+ * 截图 → 临时文件 → OCR。OCR 要读文件，所以落一次盘。
+ *
+ * 为什么还要跑一次 vision：OCR 的界面判定依赖「商店那一排卡」，商店一折叠就判成 unknown，
+ * 整个 autoRest 直接退出（2026-11-09 真机踩到）。vision 的 8x8 模板不吃这套，折叠态照样认
+ * 得出是休整期。所以让 vision 兜底：只要它给出明确状态，就用它的状态名覆盖 OCR 的。
+ */
+export async function senseRun(level) {
+  let dir
+  try {
+    dir = mkdtempSync(join(tmpdir(), 'coop-sense-'))
+    const p = join(dir, 's.png')
+    const buf = screenshot()
+    writeFileSync(p, buf)
+    // level 由调用方自己数（进局 1，每成功升一次 +1）。OCR 认 LEVEL 面板的罗马数字不可靠
+    // （截图里 "II" 就是两根竖线），而它又决定商店格数，所以不让 OCR 猜。
+    const st = await readState(p, level ? { level } : {})
+    // sidecar 现在会自己认商店等级（面板上的 LEVEL + 罗马数字），没传 level 时就用它
+    if (st && st.shopLevel != null) st.level = Number(st.shopLevel)
+    let v = null
+    try { v = classifyBuffer(buf) } catch { /* vision 挂了不影响 OCR */ }
+    if (v && v.state && Number(v.dist) <= 0.12) {
+      st.vision = v.state
+      const mapped = VISION_TO_OCR[v.state]
+      if (mapped && st.screen !== mapped) {
+        st.screenOcr = st.screen
+        st.screen = mapped
+      }
+    }
+    // 2026-11-10 夜间实测：休整期被 vision 误判成 wz_admin/wz_hall，整局提前停。
+    // 用 OCR 文本兜底：出现「休息一下 / 准备就绪」就认定是休整期。
+    const blob = String((st && st.raw && st.raw.top) || st.text || '')
+    if (/休息一下|准备就绪/.test(blob) && st.screen !== 'rest') {
+      // 注意：senseRun 对外用的是短名（rest/prep/...），这里必须写 'rest' 而不是 'wz_rest'，
+      // 否则 autoRest 的守卫（st.screen !== 'rest'）会一直判「不在休整期」，整局不买卡。
+      st.screenOcr = st.screenOcr || st.screen
+      st.screen = 'rest'
+    }
+    return st
+  } catch (e) {
+    return { ok: false, error: String((e && e.message) || e) }
+  } finally {
+    if (dir) setTimeout(() => { try { rmSync(dir, { recursive: true, force: true }) } catch { /* 忽略 */ } }, 500)
+  }
+}
+
+/**
+ * OCR 的商店 → 决策层的候选表。slot 是格子下标（0..3），买的时候要用。
+ * 空格子（empty）直接扔掉，别当成 0 费的好卡。
+ */
+export function toCandidates(shop) {
+  const out = []
+  for (let i = 0; i < (shop || []).length; i++) {
+    const it = shop[i]
+    if (!it || it.empty || !it.name) continue
+    out.push({
+      name: it.name,
+      tier: tierOf(it.tier),
+      cost: it.price == null ? null : Number(it.price),
+      slot: i,
+      x: it.x,
+      y: it.y,
+      tags: it.tags || []
+    })
+  }
+  return out
+}
+
+/**
+ * 把甲板上的干员逐个拖上战场。
+ *
+ * 2026-11-10 07:40 真机实测：**【默认关闭，不要再接回自动流程】**
+ *   - 卫戍协议「整备区 → 战场」是游戏**自动部署**，不需要拖：战斗页顶部「已部署/总数」
+ *     在完全零输入的情况下自己从 0/8 涨到 5/8；
+ *   - 休整期那排立绘只是展示：用 input swipe / input mouse motionevent / sendevent 三种手势
+ *     从甲板干员身上往地图格拖，前后截图对比**画面完全没变**（连选中态都不出现），slotsLeft 一直是 8。
+ * 所以 autoRest 默认不调用本函数，只有显式 opts.deploy === true 才跑（见 autoRest 尾部）。
+ * 函数留着是为了以后客户端改版、或需要手动提前布阵/改朝向时还能用。
+ *
+ * 关键前提（2026-11-09 深夜真机验证，已作废，仅留作手势参考）：
+ *   - 商店**展开**时拖动无效、还会带偏镜头，必须先折起来（右下绿框 toggle）；
+ *   - 折叠后干员脚下格子在 y≈860、最右一格 x≈1565、往左每格 180px；
+ *   - 拖走一个之后**剩下的不重排**，留在原格位；
+ *   - 但格位本身会随「商店展开 / 折叠」和商店格数变（展开态测到过 x≈1075/1180 和
+ *     1270/1380，折叠态是 1385/1565），所以**不能靠序号盲算**。折叠之后重新截一张，
+ *     用 ocr.py 的 deckUnits（16x16 分块标准差）拿真实位置。
+ *     deck 里的 index 只在检测失败时兜底。
+ *
+ * @param {Array<{index:number,name:string}>} deck
+ * @param {{facing?:string, slotFrom?:number}} opts
+ */
+const DECK_XS = [1575, 1412, 1249, 1086, 923, 760] // 折叠态甲板格位，最右优先
+
+/**
+ * 默认不拖：只有调用方显式 `deploy: true` 才允许 deployFromDeck 动。
+ * 2026-11-10 实测战场自动部署，见 deployFromDeck 头注释。
+ */
+export function shouldDeploy(opts = {}) {
+  return Boolean(opts && opts.deploy === true)
+}
+
+/**
+ * 默认落点候选（1920x1080，休整期默认镜头）。都是实测绿过的可站格中心。
+ * 拖动时幻影偏移由 placeUnit 内部的 PHANTOM 处理，这里写的是**格子中心**。
+ */
+/** 整备区（甲板）最多能放几个干员。满了再买游戏只弹提示，不成交。 */
+/** 装备的归属偏好：攻击类给输出，防御类给承伤（用户 m04231 原话「攻击属性给输出，防御给重装」）。
+ *  没有职业信息时退化成「谁的格子最近给谁」。 */
+export function equipTargetClass(effect = '') {
+  const t = String(effect)
+  if (/防御|生命上限|法抗|阻挡/.test(t)) return ['重装', '近卫', '特种']
+  if (/攻击|攻速|伤害|技力/.test(t)) return ['狙击', '术师', '近卫', '辅助']
+  return []
+}
+
+/**
+ * 把甲板上散着的装备拖给干员。
+ *
+ * 2026-11-10 17:40 实测到的两件事：
+ *  1. 装备是**可拖物件**，摆在干员头顶那一排；长按 450ms → 拖到目标**格子**松手 = 装上（用户 m04723 / m04828：一切按格子判定）。
+ *  2. 认装备不能靠模板匹配（88 张图标灰度相关最高 0.4，和 Q 版小人叠在一起），得轻按图标读左侧面板 —— findDeckEquip 已能认出
+ *     「歌利亚头盔」「灵巧涡轮手套」并给出所属干员的格子。
+ *
+ * ⚠️ 装完**复查**还没做成：轻按会平移镜头，再点一次读出来的就是新布局。
+ *    下一步改成数「干员头顶白条」（装一件多一条，最多两条）来确认，别再靠再点一次。
+ */
+export async function equipDeck({ steps = [], maxItems = 4 } = {}) {
+  const before = await findDeckEquip()
+  if (!before.ok || !before.items.length) {
+    if (before.ok) steps.push('  甲板头顶没有散落的装备')
+    return 0
+  }
+  let n = 0
+  for (const it of before.items.slice(0, maxItems)) {
+    if (it.placed) continue               // 已经在干员头顶（装好了）就别再拖
+    const chip = it.chip
+    if (!chip) continue
+    const gx = Math.round(it.x + it.w / 2)
+    const gy = Math.round(it.y + it.h / 2)
+    // 落点 = 干员脚下的格子（chip 点本身就是按压干员身体的点，用户 m04828：一切按格子判定）
+    await dragHold([gx, gy], [chip.x, chip.y], { holdStartMs: 50, holdMs: 800, steps: 12, stepMs: 45 })
+    await sleep(700)
+    steps.push('  装装备：' + it.name + '（' + (it.effect || '').slice(0, 14) + '）→ 格子 ' + Math.round(chip.x) + ',' + Math.round(chip.y))
+    n += 1
+  }
+  // 复查：纯看图。装上的标志是「原来悬在头顶那一排的那件不见了/挪位了」，
+  // 不能数 placed —— 装到干员头顶后图标会被等级小牌压住，图库反而认不到。
+  const after = await findDeckEquip()
+  if (after.ok) {
+    const left = after.items.filter((it) => !it.placed).length
+    steps.push('  装备复查：还剩 ' + left + ' 件散在外面（装之前 ' + before.items.filter((it) => !it.placed).length + ' 件）')
+  }
+  return n
+}
+
+export const DECK_CAP = 10
+
+export const DEPLOY_TILES = [
+  [880, 300], [770, 300], [990, 300],
+  [880, 410], [770, 410], [990, 410], [1100, 410],
+  [660, 410], [660, 300], [1100, 300],
+  [880, 520], [990, 520],
+]
+
+export async function deployFromDeck(deck, opts = {}) {
+  const t0 = Date.now()
+  const steps = []
+  if (!deck || !deck.length) return { ok: true, steps, placed: 0 }
+  const facing = opts.facing || 'right'
+  const mapTiles = deployTiles()
+  let tiles = opts.tiles && opts.tiles.length ? opts.tiles : (mapTiles.length ? mapTiles : DEPLOY_TILES)
+
+  let scan0 = await scanDeckChips()
+  let chips0 = scan0.chips
+  // 商店展开时底排是商店卡，甲板被顶到上面一行，牌和卡会混（用户 m08714：换人/上装备要先折叠商店）。
+  // 商店开没开，调用方从 OCR 已经知道，直接听它，不自己猜。
+  if (opts.shopOpen === true) {
+    tap(POINTS.collapse[0], POINTS.collapse[1])
+    await sleep(1000)
+    scan0 = await scanDeckChips()
+    chips0 = scan0.chips
+    steps.push('  商店展开中 → 先折叠再上场（甲板 ' + chips0.length + ' 张）')
+  }
+  if (!chips0.length) {
+    steps.push('  扫不到甲板小牌，跳过拖上场')
+    return { ok: true, steps, placed: 0, deckLeft: deck.length }
+  }
+  steps.push('  甲板 ' + chips0.length + ' 张｜候选格 ' + tiles.length + (mapTiles.length ? '（地图）' : '（写死）'))
+
+  if (opts.freeScan === true) {
+    try {
+      const free = await scanFreeTiles()
+      if (free.ok && free.tiles.length) {
+        const near = (p2, q) => Math.abs(p2[0] - q[0]) <= 40 && Math.abs(p2[1] - q[1]) <= 40
+        const extra = free.tiles.filter((t) => !tiles.some((o) => near(o, t)))
+        if (extra.length) {
+          tiles = tiles.concat(extra)
+          steps.push('  空可站格补 ' + extra.length + ' 个（共 ' + tiles.length + '）')
+        }
+      }
+    } catch (e) {
+      steps.push('  空格扫描失败（' + e.message + '），用现有格')
+    }
+  }
+
+  const left = Number(opts.slotsLeft)
+  const budget = Math.min(deck.length, chips0.length, Number.isFinite(left) && left > 0 ? left : Infinity)
+  if (!budget) {
+    steps.push('  没有可上场名额（剩 ' + (Number.isFinite(left) ? left : '?') + '）')
+    return { ok: true, steps, placed: 0, deckLeft: chips0.length }
+  }
+
+  let plan = []
+  if (opts.smart && typeof opts.identity === 'function') {
+    try {
+      const known = []
+      for (const c of chips0.slice(0, budget)) known.push(await opts.identity(c))
+      plan = planDeploy({ units: known, tiles: tiles, closed: opts.closed, map: opts.map || mapForPlacement() })
+      steps.push('  站位计划：' + plan.map((x) => (x.name || '?') + '→' + x.tile.join(',') + '朝' + x.facing).join(' / '))
+    } catch (e) {
+      steps.push('  站位计划算不出来（' + e.message + '），按地图格顺序放')
+      plan = []
+    }
+  }
+
+  // 甲板顺序：新买的插最左端 → chips 左到右是新到旧，deck 是旧到新，取名要反过来。
+  const names = deck.slice().reverse().map((x) => x.name)
+  const queue = chips0.slice(0, budget).map((c, k) => ({
+    x: c.x,
+    y: c.y,
+    name: (plan[k] && plan[k].name) || names[k] || '',
+    want: (plan[k] && plan[k].tile) || null,
+    rank: (plan[k] && plan[k].deployRank) || 5,
+  }))
+  queue.sort((a, b) => a.rank - b.rank)
+
+  const used = new Set()
+  const pickCell = (item, pool) => {
+    if (item.want) {
+      const k = item.want[0] + ',' + item.want[1]
+      if (!used.has(k) && pool.some((t) => t[0] === item.want[0] && t[1] === item.want[1])) {
+        used.add(k)
+        return item.want
+      }
+    }
+    for (const t of pool) {
+      const k = t[0] + ',' + t[1]
+      if (used.has(k)) continue
+      used.add(k)
+      return t
+    }
+    return null
+  }
+
+  const record = (b, diff) => {
+    if (opts.roster && opts.board) {
+      try {
+        const u = addUnit(opts.roster, { name: b.name, tier: 0 })
+        const g0 = pxToGrid(b.to)
+        const grid = [g0.gx, g0.gy]
+        boardPlace(opts.board, u.id, grid)
+        u.cell = grid
+        steps.push('  ' + u.id + (b.name ? '(' + b.name + ')' : '') + ' → 格 ' + grid.join(','))
+      } catch (e) {
+        steps.push('  记名册失败：' + e.message)
+      }
+    }
+  }
+
+  // 一次一个：拖 → 只看这一格的像素差 → 成了再拖下一个（用户 m09797：先要稳定，再谈快）。
+  // 失败就换下一个候选格再试，同一个干员最多试 MAX_TRIES_PER_UNIT 次。
+  const MAX_TRIES_PER_UNIT = Number(opts.triesPerUnit) || 4
+  let placed = 0
+  let attempts = 0
+  for (const item of queue) {
+    if (placed >= budget) break
+    let done = false
+    for (let k = 0; k < MAX_TRIES_PER_UNIT && !done; k++) {
+      const cell = pickCell(item, tiles)
+      if (!cell) {
+        steps.push('  候选格用完了')
+        break
+      }
+      attempts += 1
+      const before = screenshot()
+      await placeBatch([{ from: [item.x, item.y], to: cell, facing }])
+      await sleep(300)
+      const after = screenshot()
+      const dv = (await diffCells(before, after, [cell]))[0]
+      if (dv != null && dv >= 8) {
+        placed += 1
+        steps.push('  上场 ' + (item.name || ('#' + placed)) + ' (' + item.x + ',' + item.y + ' → ' + cell.join(',') + ') 朝' + facing + ' 格差 ' + dv.toFixed(1))
+        record({ name: item.name, to: cell }, dv)
+        done = true
+      } else {
+        steps.push('  试 ' + cell.join(',') + ' 没上去（格差 ' + (dv == null ? '?' : dv.toFixed(1)) + '）')
+      }
+    }
+    if (!done) {
+      steps.push('  第 ' + (placed + 1) + ' 个干员找不到能落的格，停手')
+      break
+    }
+  }
+
+  const ms = Date.now() - t0
+  steps.push('  本回合上场 ' + placed + ' 个｜试了 ' + attempts + ' 次｜合计 ' + (ms / 1000).toFixed(1) + 's')
+  return { ok: true, steps, placed, deckLeft: Math.max(0, chips0.length - placed) }
+}
+export async function autoRest(opts = {}) {
+  const maxSteps = Math.max(1, Number(opts.maxSteps) || 6)
+  const owned = { ...(opts.owned || {}) }
+  const steps = []
+  let level = Math.max(1, Number(opts.centerLevel) || 1)
+  let last = null
+  let upgradeFails = 0
+  let fallbackBuys = 0
+  let rerolls = 0
+  // 买来的卡记在甲板队列里（买卡逻辑不变）。2026-11-10 实测：战场是自动部署，
+  // 甲板不需要手动拖（deployFromDeck 默认关闭）。index 是「甲板原始序号」（最右为 0），
+  // 手动拖时拖走一个剩下的不重排，必须用原序号算起手点。
+  // deck 由调用方（autoRun）跨回合传进来 —— 上个回合买了的，这个回合还在队列里。
+  const deck = Array.isArray(opts.deck) ? opts.deck.slice() : []
+  let deckSeq = Number(opts.deckSeq) || 0
+  // 目标阵容清单（用户 m03884：开局列清单照着买）。空数组 = 不启用，行为与旧版一致。
+  let wantList = Array.isArray(opts.wantList) ? opts.wantList : []
+  // 清单按回合阶段收窄：前期钱少（4–7 块），只列 1–2 阶；后面再放开。
+  // 买卡阶数上限：商店只卖「商店等级」以内的卡（Lv4 的店里没有 6 阶）。
+  // 旧版按回合数拍了个 6，第 12 回合还想买 6 阶 → 清单里全是没有的卡，pickFromShop 永远 null，
+  // 于是一整回合什么都不买（2026-11-10 19:00 第 7/9 回合踩到）。
+  const tierCap = (r, lv) => Math.min(6, Math.max(2, Number(lv) || 2))
+
+  for (let i = 0; i < maxSteps; i++) {
+    let st = await senseRun(level)
+    if (!st.ok) return { ok: false, error: st.error, steps, last }
+    // 「作战结束」过场：等它自己滑走再动手（2~3 秒），别在过场里点卡、点准备就绪
+    for (let k = 0; k < 4 && st.ok && st.screen === 'warbanner'; k++) {
+      await sleep(2200)
+      st = await senseRun(level)
+      if (k === 0) steps.push('  作战结束过场，等它过去')
+    }
+    // 休整期有「展开/折叠」两种形态：折叠时底排只有甲板里的东西，看不到商店的 4~6 张卡。
+    // 看不见卡就等于没得买，所以先点开（2026-11-09 真机踩到：折叠态直接判没货、空转）。
+    let visibleShop = (st.shop || []).filter((x) => x && !x.empty).length
+    // 右下角那个绿框是「商店 / 甲板」面板的切换开关（实测 2026-11-09：点一下在展开↔折叠之间翻转，
+    // OCR 文本会从「收起 ✕ + 卡片名」变成只剩「展开」）。所以点完必须复核，最多点两次，
+    // 免得一次点空、或者一次点过头又收回去。
+    for (let k = 0; k < 2 && st.screen === 'rest' && visibleShop === 0; k++) {
+      tap(POINTS.shopExpand[0], POINTS.shopExpand[1])
+      await sleep(1400)
+      st = await senseRun(level)
+      if (!st.ok) return { ok: false, error: st.error, steps, last }
+      visibleShop = (st.shop || []).filter((x) => x && !x.empty).length
+      steps.push('  商店是折叠的，点开关（第 ' + (k + 1) + ' 次）→ ' + visibleShop + ' 张卡')
+    }
+    if (st.screen !== 'rest') return { ok: false, error: '不在休整期（screen=' + st.screen + (st.screenOcr ? '/OCR=' + st.screenOcr : '') + '）', steps, last }
+    last = st
+
+    // 装备自动佩戴（用户 m04629 / m04620 连着提醒「装备依旧没有装」）：
+    // 纯看图认装备（equipkb.py 图库匹配，不轻按）+ 长按拖到干员脚下的格子。每回合休整期第一轮做一次。
+    if (i === 0 && opts.equip !== false) {
+      try {
+        const nEq = await equipDeck({ steps })
+        if (!nEq) steps.push('  这轮没有要装的装备')
+      } catch (e) {
+        steps.push('  装装备失败：' + e.message)
+      }
+    }
+
+    if (opts.wantAuto) {
+      wantList = buildWantList({
+        pool: operatorPool(),
+        activeCovenants: opts.activeCovenants || [],
+        quota: { 重装: 2, 医疗: 1, 狙击: 2, 术师: 2, 辅助: 1 },
+        limit: 8,
+        maxTier: tierCap(Number(st.round) || 1, level),
+      })
+    }
+    // OCR 认出的商店等级优先（以前靠「进局 1，每升一次 +1」自己数，接手对局就会从 1 数起）
+    if (st.level != null && Number.isFinite(Number(st.level)) && Number(st.level) >= 1 && Number(st.level) <= 6 && Number(st.level) !== level) {
+      steps.push('  商店等级按 OCR 校正：Lv' + level + ' → Lv' + st.level)
+      level = Number(st.level)
+    }
+    const shop = toCandidates(st.shop)
+    // 升级费是每回合变的（实测回合1=5、2=4、3=3、4=2），PRTS 没写，所以用 OCR 读到的那一格覆盖默认表
+    // 底表来自 data/economy.json（首次升级 5 点），再用 OCR 读到的那一格覆盖
+    const levelupCost = levelupTableFromEconomy(economy().levelup)
+    if (st.upgradeCost != null) levelupCost[level] = Number(st.upgradeCost)
+    const adv = adviseRest({
+      config: { levelupCost },
+      money: Number(st.money) || 0,
+      centerLevel: level,
+      round: Number(st.round) || 1,
+      totalRounds: Number(opts.totalRounds) || 9,
+      shop,
+      owned,
+      activeCovenants: opts.activeCovenants || [],
+      covenantMembers: opts.covenantMembers,
+      covenantStrength: covenantStrength(),
+      buyRules: runflow().buyPriority,
+      pool: opts.pool
+    })
+    // 清单优先：adviseRest 说买，但清单上有缺口且店里正好有 → 换成清单上的人。
+    // 不夺升级的权（adv.action === 'levelup' 时不动），因为升级节奏比补人更硬。
+    // 对子优先（B 站攻略 2026-11-10 六视频共识：「有对子先拿对子，可以慢升本，找对碰一定不会错」）：
+    // 手里已经有同名的（owned 或甲板上有），再买一张就能凑对；买第三张直接三合一升阶。
+    if (adv.action === 'buy') {
+      const moneyNow = Number(st.money) || 0
+      const cnt = {}
+      for (const [k, v] of Object.entries(owned || {})) cnt[k] = (cnt[k] || 0) + (Number(v) || 0)
+      for (const d of deck) if (d && d.name) cnt[d.name] = (cnt[d.name] || 0) + 1
+      const pair = shop
+        .filter((c) => c && c.name && Number(c.cost) <= moneyNow && (cnt[c.name] || 0) >= 1)
+        .sort((a, b) => (cnt[b.name] || 0) - (cnt[a.name] || 0) || Number(a.cost) - Number(b.cost))[0]
+      if (pair && pair.name !== adv.target) {
+        steps.push('  对子 → 改买 ' + pair.name + '（已有 ' + cnt[pair.name] + ' 张，' + pair.cost + ' 块）')
+        adv.target = pair.name
+      }
+    }
+    if (wantList.length && adv.action === 'buy' && !adv.target) {
+      const gaps = wantGaps({ wantList, owned, onBoard: deck.map((d) => d && d.name) })
+      const hit = pickFromShop({ shop, gaps, money: Number(st.money) || 0 })
+      if (hit && hit.name !== adv.target) {
+        steps.push('  清单缺口 → 改买 ' + hit.name + '（' + (hit.gap.why || '') + '）')
+        adv.target = hit.name
+      }
+    }
+    steps.push('第' + st.round + '回合 钱' + st.money + ' 中心Lv' + level + ' → ' + adv.action + (adv.target ? ' ' + adv.target : ''))
+    // 诊断：钱没花完时把商店和余量打出来，否则只能靠猜（2026-11-10 第 5 回合 9 块买了 0 张）
+    if ((Number(st.money) || 0) >= 3) {
+      steps.push('  shop ' + (st.shop || []).map((c) => (c && !c.empty ? (c.name + '/' + c.cost) : '-')).join(' ') +
+        ' | 剩余可放置=' + st.slotsLeft + ' 甲板=' + deck.length)
+    }
+
+    // 用户 m04440：不是「甲板满了才升级」，而是按节奏升（前期拿高阶干员靠升级商店）。
+    {
+      const wantLv = targetShopLevel(Number(st.round) || 1)
+      const upCostNow = st.upgradeCost == null ? null : Number(st.upgradeCost)
+      if (adv.action !== 'levelup' && level < wantLv && upCostNow != null && (Number(st.money) || 0) >= upCostNow) {
+        steps.push('  节奏：目标 Lv' + wantLv + '（现在 Lv' + level + '，钱 ' + st.money + ' ≥ 升级费 ' + upCostNow + '）→ 先升级')
+        adv.action = 'levelup'
+      }
+    }
+
+    // 用户 m03409：「甲板上角色也不用太多」。第 13 回合实测：甲板 10 个、剩余可放置角色 2，
+    // 游戏直接红字警告「当前存在无法放置的单位，在休整期结束时将被清空」——
+    // 买超过还能放上场的数量，钱花掉、卡也被清掉，纯亏。剩余可放置角色是硬上限（用户 m03053 确认固定）。
+    if (adv.action === 'buy') {
+      // 「剩余可放置角色」OCR 偶尔读成 null（尤其数值是 0 时），只靠它会漏闸。
+      // 补一条不用 OCR 的硬推：部署上限 8（PRTS 战场规则 + 用户 m03053「固定」），
+      // 场上已有 boardCount 个，甲板再有 deck.length 个，加起来顶到 8 就放不下了。
+      let left = Number(st.slotsLeft)
+      if (!Number.isFinite(left)) {
+        const cap = Number(opts.deployLimit) || 8
+        left = Math.max(0, cap - (Number(opts.boardCount) || 0))
+        if (deck.length >= left) steps.push('  剩余可放置按「部署上限 ' + cap + ' − 场上 ' + (Number(opts.boardCount) || 0) + '」推为 ' + left)
+      }
+      const onBoard0 = (Number(opts.boardCount) || 0) + deck.length
+      const fullBySlots = Number.isFinite(left) && deck.length >= left
+      const fullByCap = onBoard0 >= DECK_CAP
+      if (fullBySlots || fullByCap) {
+        steps.push('  甲板满了（剩余可放置 ' + (Number.isFinite(left) ? left : '?') + ' / 甲板 ' + deck.length + ' / 合计 ' + onBoard0 + '），这轮不买了')
+        // 用户 m04356：甲板一堆低阶干员、钱还剩着 → 该去升级商店，别继续买。
+        // 甲板满的时候不再留 3 块备用金，钱够升级费就直接升。
+        const upCost = st.upgradeCost == null ? null : Number(st.upgradeCost)
+        if (upCost != null && (Number(st.money) || 0) >= upCost && level < 6) {
+          adv.action = 'levelup'
+        } else if (upCost != null && level < 6 && upCost - (Number(st.money) || 0) <= 3) {
+          // 差几块：卖 1 阶干员凑（每张 +1 块）
+          const sold = await sellToAfford({ need: upCost - (Number(st.money) || 0), keep: wantList.map((w) => w.name), steps, maxTier: (Number(st.round) || 1) >= 10 ? 6 : 3, maxSell: 4 })
+          if (sold > 0) {
+            st = await senseRun(level)
+            if ((Number(st.money) || 0) >= upCost) adv.action = 'levelup'
+          }
+          if (adv.action !== 'levelup') break
+        } else {
+          break
+        }
+      }
+    }
+    if (adv.action === 'buy') {
+      const cand = shop.find((c) => c.name === adv.target)
+      if (!cand) { steps.push('  没在商店里找到 ' + adv.target + '，停手'); break }
+      // 优先用 OCR 量出来的卡片中心（商店格数随等级变），没有再退回写死坐标
+      if (cand.x) await shopAction({ buyPoints: [[cand.x, cand.y]] })
+      else await shopAction({ buy: [cand.slot] })
+      owned[cand.name] = (owned[cand.name] || 0) + 1
+      deck.push({ index: deckSeq++, name: cand.name })
+      if (opts.onChange) opts.onChange({ bought: cand.name, money: st.money })
+      continue
+    }
+    if (adv.action === 'levelup') {
+      // 用户 m04261：升级差几块就卖掉低阶干员凑（每张卖 1 块）。
+      const needCost = st.upgradeCost == null ? null : Number(st.upgradeCost)
+      const moneyNow = Number(st.money) || 0
+      if (needCost != null && moneyNow < needCost && needCost - moneyNow <= 3 && deck.length > 2) {
+        const sold = await sellToAfford({ need: needCost - moneyNow, keep: wantList.map((w) => w.name), steps, maxTier: (Number(st.round) || 1) >= 10 ? 6 : 3, maxSell: 4 })
+        if (sold > 0) {
+          st = await senseRun(level)
+          steps.push('  卖卡后钱 ' + moneyNow + '→' + (Number(st.money) || 0) + '（升级要 ' + needCost + '）')
+        }
+      }
+      // 升级按钮的 x 跟着商店格数走（面板紧贴最左卡左边），所以用 OCR 算出来的 upgradePoint，
+      // 不能写死坐标 —— 2026-11-09 真机踩过：写死的 (568,854) 一次都没点中，还让等级虚高。
+      const costBefore = st.upgradeCost == null ? null : Number(st.upgradeCost)
+      const pt = st.upgradePoint ? [Number(st.upgradePoint.x), Number(st.upgradePoint.y)] : null
+      await shopAction({ upgrade: true, upgradePoint: pt })
+      await sleep(1200)
+      // 校验升级是否真生效。三个判据任一成立就算成功 —— Lv3 之后升级费徽章的 x 会跑到
+      // 屏幕最左边（Lv4 的 panel_geometry 算出来是负坐标），单靠读升级费会一直读成 null，
+      // 于是「升级成功」被误判成失败、钱白花（2026-11-10 第 5 回合踩到）。
+      //   1) 升级费变了（同一回合必然变）
+      //   2) 升级按钮的 x 变了（面板随格数左移，每升一级 -240）
+      //   3) 商店可见卡数变了
+      const xBefore = pt ? pt[0] : null
+      const cardsBefore = (st.shop || []).filter((x) => x && !x.empty).length
+      let after = await senseRun(level + 1)
+      let costAfter = after.ok && after.upgradeCost != null ? Number(after.upgradeCost) : null
+      let okUp = costAfter != null && costBefore != null && costAfter !== costBefore
+      const xAfter = after.ok && after.upgradePoint ? Number(after.upgradePoint.x) : null
+      if (!okUp && xBefore != null && xAfter != null && xAfter !== xBefore) {
+        okUp = true
+        steps.push('  升级费读不出，改按面板位置判断（x ' + xBefore + '→' + xAfter + '）')
+      }
+      if (!okUp) {
+        const cardsAfter = (after.shop || []).filter((x) => x && !x.empty).length
+        if (cardsAfter > cardsBefore) {
+          okUp = true
+          steps.push('  升级费读不出，改按商店格数判断（' + cardsBefore + '→' + cardsAfter + '）')
+        }
+      }
+      if (!okUp) {
+        const again = await senseRun(level)
+        const c2 = again.ok && again.upgradeCost != null ? Number(again.upgradeCost) : null
+        if (c2 != null && costBefore != null && c2 !== costBefore) { okUp = true; costAfter = c2; after = again }
+      }
+      if (okUp) {
+        level += 1
+        st = after
+        steps.push('  升到 Lv' + level + '（升级费 ' + costBefore + '→' + costAfter + '）')
+        continue
+      }
+      upgradeFails += 1
+      steps.push('  升级没生效（升级费还是 ' + costAfter + '，预期 ≠ ' + costBefore + '），这回合不再试')
+      if (upgradeFails >= 2) break
+      continue
+    }
+    // 兜底买要在「冻结/刷新」之前：冻结是免费动作，钱多的时候 decide 常给 freeze，
+    // 结果一回合 11 块原封不动被清零（2026-11-10 第 7 回合实测两次）。
+    if (adv.action !== 'buy' && fallbackBuys < 3) {
+      const moneyLeft = Number(st.money) || 0
+      const slots = Number(st.slotsLeft)
+      const room = Number.isFinite(slots) ? slots : 8
+      const pool = (st.shop || []).filter((c) => c && !c.empty && Number(c.cost) >= 1 && Number(c.cost) <= moneyLeft)
+      if (moneyLeft >= 2 && deck.length < room && pool.length) {
+        pool.sort((a, b) => (Number(a.cost) || 9) - (Number(b.cost) || 9))
+        const pick = pool[0]
+        if (pick.x) await shopAction({ buyPoints: [[pick.x, pick.y]] })
+        else await shopAction({ buy: [pick.slot] })
+        owned[pick.name] = (owned[pick.name] || 0) + 1
+        deck.push({ index: deckSeq++, name: pick.name })
+        fallbackBuys += 1
+        steps.push('  兜底买 ' + pick.name + '（' + pick.cost + ' 块，钱不花就清零）')
+        continue
+      }
+    }
+    if (adv.action === 'freeze') {
+      tap(POINTS.freeze[0], POINTS.freeze[1])
+      await sleep(1200)
+      steps.push('  冻结住了')
+      break
+    }
+    if (adv.action === 'reroll') {
+      // 刷新 1 块钱一次，没有上限会一直刷下去（钱够就不停）。一回合最多两次。
+      if (rerolls >= 2) { steps.push('  这回合已经刷过 2 次，不再刷'); break }
+      rerolls += 1
+      await shopAction({ refresh: 1 })
+      continue
+    }
+    // 兜底：资金每回合清零（用户 m03053），剩着就是白扔。没有更好的决策、又买得起时，买最便宜的那张。
+    // 2026-11-10 第 7 回合扛着 11 块什么都没买（decide 判「留着」），钱直接蒸发。
+    if (fallbackBuys < 3) {
+      const moneyLeft = Number(st.money) || 0
+      const slots = Number(st.slotsLeft)
+      const room = Number.isFinite(slots) ? slots : 8
+      const pool = (st.shop || []).filter((c) => c && !c.empty && Number(c.cost) >= 0 && Number(c.cost) <= moneyLeft)
+      if (moneyLeft >= 2 && deck.length < room && pool.length) {
+        pool.sort((a, b) => (Number(a.cost) || 9) - (Number(b.cost) || 9))
+        const pick = pool[0]
+        if (pick.x) await shopAction({ buyPoints: [[pick.x, pick.y]] })
+        else await shopAction({ buy: [pick.slot] })
+        owned[pick.name] = (owned[pick.name] || 0) + 1
+        deck.push({ index: deckSeq++, name: pick.name })
+        fallbackBuys += 1
+        steps.push('  兜底买 ' + pick.name + '（' + pick.cost + ' 块，钱不花就清零）')
+        continue
+      }
+    }
+    break
+  }
+  // 2026-11-10 07:40 真机实测：休整期拖拽无效、战场自动部署，默认关闭。
+  // 证据：① 战斗页顶部「已部署/总数」在完全零输入下自己从 0/8 涨到 5/8；
+  //       ② 休整期用 input swipe / input mouse motionevent / sendevent 三种手势，从甲板干员
+  //          身上往地图格拖，前后截图对比画面完全没变（连选中态都没有），slotsLeft 始终 8。
+  // 整备区位置 = 自动部署顺序，买来的干员自己会上场，所以默认不调 deployFromDeck。
+  // 只有显式 deploy:true 才保留旧行为（以后要手动布阵/改朝向再用）。
+  // 默认路径因此整段跳过：deployFromDeck 里每个格位一次 senseRun（最多 6 次 OCR），
+  // autoRest 收尾不再被拖拽拖住。
+  let deployed = 0
+  if (deck.length && shouldDeploy(opts)) {
+    // 名册/棋盘状态：调用方没传就自己从磁盘读，用完再写回（跨进程、跨回合都能续）
+    const roster = opts.roster || loadRoster()
+    const board = opts.board || loadBoard()
+    const shopOpen = !!(last && (last.shop || []).filter((c) => c && !c.empty).length)
+    const d = await deployFromDeck(deck, { facing: opts.facing || 'right', slotsLeft: last && last.slotsLeft, smart: opts.smart === true, freeScan: opts.freeScan === true, shopOpen, roster, board })
+    steps.push(...d.steps)
+    deployed = d.placed || 0
+    try {
+      if (d.placed) {
+        saveRoster(opts.roster || roster)
+        saveBoard(opts.board || board)
+        steps.push('  名册/棋盘已落盘（' + Object.keys((opts.roster || roster).units || {}).length + ' 人）')
+      }
+    } catch (e) {
+      steps.push('  名册落盘失败：' + e.message)
+    }
+    // 全部拖完才清空；中途失败留到下个回合再试
+    if (d.ok) deck.length = 0
+  }
+  return { ok: true, steps, last, centerLevel: level, deployed, deckLeft: deck, deckSeq }
+}
+
+/**
+ * 打一整局：休整期买东西 → 打完这回合 → 下一个休整期 …… 直到结算或到上限。
+ * 每回合记 {round, money, hp, bought, result}，最后交给 wz_review。
+ */
+export async function autoRun(opts = {}) {
+  const maxRounds = Math.max(1, Number(opts.maxRounds) || 12)
+  const battleMs = Math.max(30, Number(opts.maxBattleSeconds) || 150) * 1000
+  const log = []
+  const rounds = []
+  const owned = {}
+  // 新起一个进程时根本不知道当前中心几级，而等级决定商店格数（3+等级），一处错全盘错。
+  // 用 OCR 算出的 firstSlotLeft 反推格数最稳：firstSlotLeft = 1407 - (n-1)*240。
+  let level = Math.max(1, Number(opts.centerLevel) || 1)
+  if (!opts.centerLevel) {
+    const boot = await senseRun()
+    if (boot.ok && boot.screen === 'rest' && boot.firstSlotLeft != null) {
+      const n = Math.round((1407 - Number(boot.firstSlotLeft)) / 240) + 1
+      if (n >= 3 && n <= 9) level = Math.max(1, Math.min(6, n - 3))
+      log.push('开机自检：商店 ' + n + ' 格 → 推定调度中心 Lv' + level)
+    }
+  }
+  // 甲板队列跨回合保留：上个回合买了的，这个回合还在队列里（默认战场自动部署，不拖）
+  let deck = []
+  let deckSeq = 0
+  // 这个回合之前已经买过、已经上场的干员数。整备区（甲板+上场）上限 10，超过就是白按。
+  let boardCount = Number(opts.boardCount) || 0
+  // 开局定一次的购物清单：按「能叠本局盟约 + 阶数」排，职业配额保证有坦/奶/输出。
+  let wantList = []
+  if (opts.wantList === 'auto' || opts.wantList === true) {
+    wantList = buildWantList({
+      pool: operatorPool(),
+      activeCovenants: opts.activeCovenants || [],
+      quota: { 重装: 2, 医疗: 1, 狙击: 2, 术师: 2, 辅助: 1 },
+      limit: 8,
+    })
+    log.push('目标阵容清单：' + wantList.map((w) => w.name + '(' + (w.cls || '?') + ')').join('、'))
+    for (const w of wantList) log.push('  ' + w.name + ' — ' + w.why)
+  } else if (Array.isArray(opts.wantList)) {
+    wantList = opts.wantList
+  }
+  let lastHp = null
+  let stop = ''
+
+  // 接手（play-from-rest）时 deck 是空的：不先数一遍，买卡闸门会以为甲板空、一回合买 5 张，
+  // 结果屏上弹「干员已满，无法继续调度干员」，多出来的还会在离开休整期时被清空
+  // （2026-11-10 16:29 第 10 回合实测）。先认一遍甲板再进循环。
+  if (!deck.length) {
+    // 只数牌、不认人：认人要逐个轻按甲板（会弹出干员详情/购买详情），
+    // 2026-11-10 16:35 那一轮就是这么把状态机推进 wz_buydetail、整局直接停掉的。
+    const sc = await scanDeckChips()
+    const n = sc && sc.ok && sc.chips ? sc.chips.length : 0
+    if (n) {
+      deck = Array.from({ length: n }, () => ({ index: deckSeq++, name: '' }))
+      log.push('接手：甲板已有 ' + n + ' 个（只数了牌，没认名字）')
+    }
+  }
+
+  for (let i = 0; i < maxRounds; i++) {
+    const cur = peek()
+    if (cur.state === 'wz_settle') { stop = '结算了'; break }
+    if (cur.state !== 'wz_rest' && cur.state !== 'wz_prep') {
+      // 战斗态：休整期点完「准备就绪」后立刻认屏会读到 wz_battle（2026-11-10 16:18 第二局就
+      // 这么在第 9 回合被整局掐断）。战斗本身要 1.5–2.5 分钟，30 秒的超时等不到，单独长等。
+      if (/^wz_battle|^wz_warbanner/.test(cur.state || '')) {
+        const b = await waitFor(['wz_rest', 'wz_prep', 'wz_settle', 'wz_tactic'], { timeoutMs: 180_000, gapMs: 1500 })
+        if (b.state === 'wz_settle') { stop = '结算了'; break }
+        // 战斗后先弹「战术决策 3 选 1」再回休整期（19:06 第 8 回合就停在这）。选掉它继续。
+        if (b.state === 'wz_tactic') {
+          const tk = await pickTactic({ preferList: tacticPreference({ covenants: opts.activeCovenants }).order })
+          log.push('战术决策（战斗后）：' + (tk.ok ? '选了第 ' + tk.picked + ' 张' : '没选成（' + tk.reason + '）'))
+          const b2 = await waitFor(['wz_rest', 'wz_prep', 'wz_settle'], { timeoutMs: 40_000, gapMs: 1200 })
+          if (b2.state === 'wz_settle') { stop = '结算了'; break }
+          if (b2.state !== 'wz_rest' && b2.state !== 'wz_prep') {
+            stop = '战术决策后没回到休整期（' + b2.state + '），停手'
+            log.push(stop)
+            break
+          }
+          continue
+        }
+        if (b.state !== 'wz_rest' && b.state !== 'wz_prep') {
+          stop = '战斗结束后没回到休整期（' + b.state + '），停手'
+          log.push(stop)
+          break
+        }
+        continue
+      }
+      // 其它过场（教学/切图/模态）：等一等再认
+      let again = await waitFor(['wz_rest', 'wz_prep', 'wz_settle', 'wz_tactic'], { timeoutMs: 30_000 })
+      // 「战术决策 3 选 1」偶尔会在休整期之后再弹一次（2026-11-10 11:31 第 8 回合后撞到，
+      // 旧代码直接判「不是休整期」整局停掉）。这里补一手：选掉它，再等回休整期。
+      if (again.state === 'wz_tactic') {
+        const tk = await pickTactic({ preferList: tacticPreference({ covenants: opts.activeCovenants }).order })
+        log.push('战术决策（回合间）：' + (tk.ok ? '选了第 ' + tk.picked + ' 张' : '没选成（' + tk.reason + '）'))
+        if (tk.ok) again = await waitFor(['wz_rest', 'wz_prep', 'wz_settle'], { timeoutMs: 25_000, gapMs: 1000 })
+      }
+      if (again.state === 'wz_settle') { stop = '结算了'; break }
+      if (again.state !== 'wz_rest' && again.state !== 'wz_prep') {
+        stop = '当前不是休整期（' + again.state + '），停手'
+        log.push(stop)
+        break
+      }
+    }
+    const before = await senseRun()
+    const roundNo = before.ok ? Number(before.round) || i + 1 : i + 1
+    const money = before.ok ? Number(before.money) : null
+
+    const rest = await autoRest({
+      owned, centerLevel: level, activeCovenants: opts.activeCovenants, pool: opts.pool,
+      totalRounds: opts.totalRounds, deck, deckSeq, facing: opts.facing, boardCount, wantList,
+      wantAuto: opts.wantList === 'auto' || opts.wantList === true,
+      // 2026-11-10 实测：默认战场自动部署，只有调用方显式 deploy:true 才透传
+      ...(opts.deploy === true ? { deploy: true } : {}),
+    })
+    if (rest.centerLevel) level = rest.centerLevel
+    if (rest.deployed) boardCount += Number(rest.deployed) || 0
+    if (rest.deckLeft) deck = rest.deckLeft
+    if (rest.deckSeq) deckSeq = rest.deckSeq
+    if (!rest.ok) log.push('休整期处理失败：' + rest.error)
+    log.push(...rest.steps)
+
+    const bought = rest.steps.filter((s) => s.indexOf('→ buy') >= 0).map((s) => s.split('→ buy ')[1])
+    const play = await playRound({ battleMaxMs: battleMs, covenants: opts.activeCovenants })
+    log.push('第' + roundNo + '回合打完：' + (play.ok ? play.state : '失败 ' + play.reason))
+    let after = await senseRun()
+    // 打完这一回合先弹「作战结束」过场，此时读到的资金是战斗里累计的（顶到 99 MAX），
+    // 不是休整期的可用资金。等真正进到休整期再记数。
+    for (let k = 0; k < 4 && after.ok && after.screen === 'warbanner'; k++) {
+      await sleep(2200)
+      after = await senseRun(level)
+    }
+    // OCR 读不到血量时 ocr.py 返回 null，Number(null) === 0 会把它记成「血掉光了」。
+    // 2026-11-10 实测：R5 记成 hp=0、lifeLost=null，下一帧截图明明是 26。
+    let hpNow = after.ok && after.hp != null ? Number(after.hp) : null
+    for (let k = 0; k < 2 && hpNow == null && after.ok; k++) {
+      await sleep(1500)
+      after = await senseRun(level)
+      hpNow = after.ok && after.hp != null ? Number(after.hp) : null
+    }
+    const lifeLost = lastHp != null && Number.isFinite(hpNow) ? Math.max(0, lastHp - hpNow) : null
+    if (Number.isFinite(hpNow)) lastHp = hpNow
+    rounds.push({
+      round: roundNo,
+      moneyLeft: after.ok && after.screen === 'rest' ? Number(after.money) : money,
+      hp: hpNow,
+      lifeLost,
+      bought,
+      notes: play.ok ? undefined : play.reason
+    })
+    if (!play.ok) { stop = play.reason || '这一回合没打完'; break }
+    if (play.state === 'wz_settle') { stop = '结算了'; break }
+    if (opts.onRound) opts.onRound(rounds[rounds.length - 1])
+  }
+  return { ok: rounds.length > 0, rounds, log, stop, owned }
+}
+
+export default { senseRun, toCandidates, tierOf, autoRest, autoRun }

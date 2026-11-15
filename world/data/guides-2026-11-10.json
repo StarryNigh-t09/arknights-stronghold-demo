@@ -1,0 +1,870 @@
+{
+  "meta": {
+    "title": "明日方舟·卫戍协议·规程 站位与运营数据集",
+    "season": "卫戍协议·规程（第四期，2026-11-08 16:00 起常驻；结束 2027-11-07 03:59）",
+    "sequence": "序列Ⅰ开放中；序列Ⅱ 2026-12-26 开始（页面源码中仍被注释）",
+    "capturedAt": "2026-11-10",
+    "validityRule": "只采信 2026-11-08 之后的内容。一期（初版）、二期（盟约）、三期的数值与站位表全部作废，本文件不引用。",
+    "fieldNote": "干员攻击范围数据单独存放在 data/operator-ranges.json（143 人，[[dx,dy]] 格集），本文件不重复收录。",
+    "recordSchema": {
+      "claim": "结论（中文一句话）",
+      "source": "来源 URL",
+      "quote": "来源原文摘录，≤50 字",
+      "capturedAt": "抓取日期 YYYY-MM-DD",
+      "confidence": "fact=原文直述；inference=由多条事实推导，官方未直述"
+    },
+    "confidencePolicy": "官方从未发布「按职业分」的站位表，occupationPlacement 下每条都是机制推导（inference），依据在 mapRules 的 fact 记录里。凡原文直述的机制一律标 fact。",
+    "counts": {
+      "mapRules": 19,
+      "economyTips": 12,
+      "openingTemplates": 3
+    },
+    "sources": [
+      {
+        "id": "prts-help",
+        "url": "https://prts.wiki/w/卫戍协议/帮助",
+        "title": "PRTS 卫戍协议/帮助（机制总表）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-field",
+        "url": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "title": "PRTS 卫戍协议·规程/战场一览（含入门协议剧情原文）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-terrain",
+        "url": "https://prts.wiki/w/基本地形",
+        "title": "PRTS 基本地形（高台/平地/侵入点/保护目标）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-range",
+        "url": "https://prts.wiki/w/攻击范围",
+        "title": "PRTS 攻击范围（朝向与范围关系）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-barricade",
+        "url": "https://prts.wiki/w/阻隔工事",
+        "title": "PRTS 阻隔工事（装置数据）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-obstacle",
+        "url": "https://prts.wiki/w/障碍物",
+        "title": "PRTS 障碍物（阻挡路线/寻路代价/封路限制）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-rule",
+        "url": "https://prts.wiki/w/卫戍协议·规程",
+        "title": "PRTS 卫戍协议·规程（活动总页/难度/赛程）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "prts-pact",
+        "url": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录",
+        "title": "PRTS 卫戍协议·规程/PRTS盟约记录（盟约与干员特质原文）",
+        "type": "官方转载 wiki",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-intro",
+        "url": "https://www.bilibili.com/video/BV1D2Wp6kEni",
+        "title": "小鬼卡比《保姆级【入门】攻略合集》（2026-11-09）",
+        "type": "B站视频/简介",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-ten",
+        "url": "https://www.bilibili.com/video/BV1BTWH6nEXK",
+        "title": "《看懂十大核心盟约叠层方式（一图流）》（2026-11-08）",
+        "type": "B站视频/画面文字",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-survive",
+        "url": "https://www.bilibili.com/video/BV1wpWp6FEki",
+        "title": "千杯老登《苟分心得》（2026-11-08，简介为文字总结）",
+        "type": "B站视频/简介",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-leit",
+        "url": "https://www.bilibili.com/video/BV1HaW46zEN2",
+        "title": "《新版本轮椅盟约莱塔尼亚公式化运营一图流》（2026-11-09）",
+        "type": "B站视频/画面文字",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-new",
+        "url": "https://www.bilibili.com/video/BV1NK4x6JENw",
+        "title": "《卫戍协议第四期更新都有什么新内容》（2026-11-08）",
+        "type": "B站视频",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-all",
+        "url": "https://www.bilibili.com/video/BV144WJ6fEDC",
+        "title": "《卫戍协议：规程全攻略教程》（2026-11-08）",
+        "type": "B站视频",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-skill",
+        "url": "https://www.bilibili.com/video/BV1rwWH69E7B",
+        "title": "《全干员技能更换推荐（一图流）》（2026-11-08）",
+        "type": "B站视频/画面文字",
+        "capturedAt": "2026-11-10"
+      },
+      {
+        "id": "bili-econ",
+        "url": "https://www.bilibili.com/video/BV1jEWx68EFC",
+        "title": "《手把手教你电表倒转》（2026-11-09）",
+        "type": "B站视频",
+        "capturedAt": "2026-11-10"
+      }
+    ]
+  },
+  "mapRules": [
+    {
+      "claim": "红门是「侵入点」，敌人从这里进场；每张图有 2 个，站位要按两路分别覆盖。",
+      "source": "https://prts.wiki/w/基本地形",
+      "quote": "敌方会从此进入战场",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "规程战场明确写「两个侵入点」，敌人会先聚集再出发，可以按聚集位置调战术。",
+      "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+      "quote": "即将袭来的敌人会聚集在模拟场上的两个侵入点",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "蓝门是「保护目标」，敌人走进去就扣这个点的耐久，也就是漏怪。",
+      "source": "https://prts.wiki/w/基本地形",
+      "quote": "蓝色目标点，敌方进入后会减少此目标点的耐久",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "漏怪按「未击倒敌人数」扣目标生命，每回合最多扣 10 点。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "根据未击倒敌人的数量，扣除其所属玩家的目标生命值（每回合最多扣除10点）。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "高台格「可以放置远程单位，不可通行」，通行类型仅飞行：地面敌人不经过高台格，所以高台兼作安全位。",
+      "source": "https://prts.wiki/w/基本地形",
+      "quote": "可以放置远程单位，不可通行",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "平地「可以放置近战单位，可以通行」，近战位就是平地；禁入区则完全不可放置、不可通行。",
+      "source": "https://prts.wiki/w/基本地形",
+      "quote": "不可放置单位，不可通行",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "远程干员可以下到近战位（地面）部署，这是规程战场与常规关卡最大的差别之一。",
+      "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+      "quote": "远程单位可部署于近战位",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "单场部署上限 8 名，这 8 格怎么分就是站位的全部预算。",
+      "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+      "quote": "部署上限：8",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "攻击范围随部署朝向旋转：面前一格 = 所在格 + 朝向正前方 1 格，攻击距离每 +1 就向朝向方向多一列。",
+      "source": "https://prts.wiki/w/攻击范围",
+      "quote": "每1点攻击距离属性相当于攻击范围向着部署方向前方多加了“一列”格子",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "干员在休整期摆在哪一格、朝哪边，战斗就按那个位置和朝向部署，战斗内改不了。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "该部署仅代表该干员的初始站位（一般为固定站位）",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "部署顺序按「从上到下 > 从左到右」自动进行，玩家不能改顺序：站哪一格决定谁先上场。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "按从上到下>从左到右的顺序部署。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "这条顺序规则在 2026-03-14（盟约下半）改过，旧攻略里的「从左到右>从下到上」已作废。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "部署顺序由“从左到右>从下到上”更改为“从上到下>从左到右”",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "敌人会「优先攻击最后部署的干员」，所以部署序末位的人天然是靶子。",
+      "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+      "quote": "敌人会优先攻击最后部署的干员",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "由「末位被优先攻击」+「顺序从上到下、从左到右」推导：承伤单位应摆部署序末尾（最下行/最右列），脆皮摆前面。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "按从上到下>从左到右的顺序部署。",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    },
+    {
+      "claim": "部署之间有延迟，第 1 名之前固定 3 秒：开场有 3 秒空窗，别指望第一格的人立刻接敌。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "第1名部署的干员之前还会存在3秒的延迟",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "阻隔工事会重写所在地块的通行并改变敌人路线，挡住敌人时会被打掉；它 0 阻挡、不占部署位、只花 5 费。",
+      "source": "https://prts.wiki/w/阻隔工事",
+      "quote": "重写所在地块可以<阻挡路线>",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "阻隔工事是「改路」不是「硬挡」：被改写为阻挡路线的格子寻路代价 1000，敌人会重新规划绕开；真被挡住时敌人会破坏它。",
+      "source": "https://prts.wiki/w/障碍物",
+      "quote": "如果障碍阻挡了敌人，敌人会破坏此障碍",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "寻路按代价算：普通阻挡路线格 1000、地穴 1000000，所以「摆一格就想让敌人停住」不成立，它只会让敌人换一条更便宜的路线。",
+      "source": "https://prts.wiki/w/障碍物",
+      "quote": "每个被重写为<阻挡路线>的地块的寻路代价为1,000",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "不能把红门到蓝门的路全部封死，游戏会直接拒绝放置。",
+      "source": "https://prts.wiki/w/障碍物",
+      "quote": "禁止封死道路，请重新放置",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "多人局里站右侧场地的玩家，方向相关盟约效果与部署顺序都左右镜像，抄站位表要翻一遍。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "与方向相关的盟约效果、部署顺序等都将左右镜像变化",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "作战时长随时段递增（1~2 回合 45 秒 → 领袖轮 120 秒），站位要算技能轴撑不撑得满。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "各回合的作战时长上限如下",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    }
+  ],
+  "economyTips": [
+    {
+      "claim": "资金不能存：回合末剩余资金清零，未冻结的干员和装备一起清空——「攒钱」在这个模式里不存在。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "本回合的剩余资金将清零，未被冻结的干员/装备会随之清空。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "官方剧情把这件事当新手误区点出来：「这些资金不能留到下一回合」。",
+      "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+      "quote": "这些资金不能留到下一回合",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "冻结是唯一跨回合保留手段：冻结后现有栏位保留进下回合初始补给，再点一次解冻。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "冻结补给会将当前剩余的已有栏位，被冻结的单位会被保留进下一回合的初始补给。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "手动刷新默认 1 资金一次，是纯支出；只该在「差一个凑精锐 / 差一个成型」时点。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "消耗相应资金可以执行一次手动刷新（默认每次消耗1资金）。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "出售干员返 1 资金（场上或手牌都能卖），换阵容的沉没成本比想象中低。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "可以从场上或手牌区出售干员，并获得1点资金。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "升级调度中心同时做两件事：增加刷新栏位、解锁更高等阶的干员。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "消耗资金可以为调度中心升级，从而增加刷新栏位、刷出更高等阶的干员。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "升级费每回合 -1，最低降到 0；但一升级就重置回初始需求——等降价和早升本是互斥的。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "调度中心升级所需资金每回合-1（最低降为0），升级后，升至下一级的所需资金立即重置为初始需求数。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "商店只会出「等阶 ≤ 调度中心等级」的干员，想拿高阶只能先升本：升本不是可选投资，是解锁条件。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "仅在调度中心等级 ≥ 干员所在等阶时，该干员才有可能出现在栏位中。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "3 个同名换 1 个精锐，并免费刷 3 名「高于调度中心 1 阶」的干员且这次刷新 0 费——前期凑同名是白嫖高阶最便宜的路径。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "立即在商店临时刷新3名高于调度中心等级1阶（最多6阶）的干员",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "所以节奏是「前 3 回合把钱花在凑同名上，第 4 回合起把升级费降到可接受区间再升本」，不是从头攒钱。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "调度中心升级所需资金每回合-1（最低降为0）",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    },
+    {
+      "claim": "极速模拟明文说资金供给与升级需求被大改，任何旧期（含三期）的资金曲线都不能套到规程上。",
+      "source": "https://prts.wiki/w/卫戍协议·规程",
+      "quote": "因回合数压缩，资金供给及调度中心升级需求有较大调整。",
+      "capturedAt": "2026-11-10",
+      "confidence": "fact"
+    },
+    {
+      "claim": "买不起又不想浪费时，正解是「买一个能用的 + 冻结剩下栏位」，不是刷新赌一把。",
+      "source": "https://prts.wiki/w/卫戍协议/帮助",
+      "quote": "冻结补给会将当前剩余的已有栏位",
+      "capturedAt": "2026-11-10",
+      "confidence": "inference"
+    }
+  ],
+  "occupationPlacement": {
+    "近卫": [
+      {
+        "claim": "近战位只能落在平地（可放近战、可通行），近卫的可用格天然比远程少。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置近战单位，可以通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：站红门→蓝门的必经路径正面，别贴蓝门最后一格——最后一格只挡一次，前面的格能挡整条线。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置近战单位，可以通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "朝向必须对来敌方向：攻击范围以朝向为基准旋转，朝墙等于把 3 格范围丢进空地。",
+        "source": "https://prts.wiki/w/攻击范围",
+        "quote": "每1点攻击距离属性相当于攻击范围向着部署方向前方多加了“一列”格子",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "阿戈尔体系例外：阿戈尔会「吞噬身前一格」干员，两名阿戈尔近卫相邻时按「更靠左、靠上优先」结算，站位要预先算清谁吃谁。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录",
+        "quote": "【阿戈尔】之间优先对更靠左和靠上的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "承伤近卫应占部署序末位（最下/最右），让「优先攻击最后部署」的仇恨落在它身上。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "敌人会优先攻击最后部署的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "狙击": [
+      {
+        "claim": "高台是远程位且不可通行，地面敌人不经过：狙击站高台能得到纯输出环境。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "但远程也能下近战位，卡在关键路口补一刀是合法选择，只是要吃阻挡与仇恨。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "远程单位可部署于近战位",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：优先高台、且高台选「射程能覆盖整条直路」的那一格，而不是离红门最近的那格。",
+        "source": "https://prts.wiki/w/攻击范围",
+        "quote": "面前一格……即所在格+自身部署朝向正前方的1格",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "反向结论：狙击别放部署序末位，否则「优先攻击最后部署」会把它当第一目标。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "敌人会优先攻击最后部署的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "重装": [
+      {
+        "claim": "近战位在平地，高台明确「可以放置远程单位」——重装没有高台选项，只能下地。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：站在「不打掉它就过不去」的窄口，而不是宽路上的正中格。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置近战单位，可以通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "承伤是它的本职，应该主动占部署序末位吃仇恨；这一点和近卫承伤位冲突时，重装优先。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "敌人会优先攻击最后部署的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "有阻隔工事时别和工事抢同一路口：工事 0 阻挡且会被打掉，人流最终还是会压到干员身上。",
+        "source": "https://prts.wiki/w/阻隔工事",
+        "quote": "重写所在地块可以<阻挡路线>",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "医疗": [
+      {
+        "claim": "医疗属远程单位，高台与近战位都能放；高台不可通行，是最不容易被打断的位置。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：站己方半场中后段，用朝向把治疗范围压在承伤单位身上，而不是贴着承伤单位站。",
+        "source": "https://prts.wiki/w/攻击范围",
+        "quote": "每1点攻击距离属性相当于攻击范围向着部署方向前方多加了“一列”格子",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "医疗站高台时，敌人打不到它，但它的范围也只能罩住与自己同向的那一片，朝向错一格就白给。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "例外：如果这张图没有可用高台，医疗退到近战位后排，并且要比承伤单位更早部署（更靠上/靠左）。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "按从上到下>从左到右的顺序部署。",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "辅助": [
+      {
+        "claim": "辅助的收益对象常常是「身前一格」：渡桥给身前一格 +2 层、旅骨按售价给身前一格叠层、莎草给身前一格回 2 技力。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录",
+        "quote": "使自身及身前一格干员已激活的盟约层数+2",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：这类辅助要站在受益干员的正后方一格（辅助的「身前」= 朝敌人那一侧），站反了等于没带。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录",
+        "quote": "使自身及身前一格干员已激活的盟约层数+2",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "辅助自身多半也是远程位，可以下高台；但站的格决定它「身前」是谁，所以位置比朝向更不能随便。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "阿戈尔局例外：吞噬也吃「身前一格」，辅助放在阿戈尔正前方会被吃掉，摆位要避开那条链。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录",
+        "quote": "【阿戈尔】干员依次吞噬身前一格干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      }
+    ],
+    "术师": [
+      {
+        "claim": "术师是远程位，攻击范围随朝向旋转，法伤范围是按朝向铺开的。",
+        "source": "https://prts.wiki/w/攻击范围",
+        "quote": "面前一格……即所在格+自身部署朝向正前方的1格",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：高台优先，且优先选「两条路线汇合点 / 拐角」旁边的格子，让范围同时压两路。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "术师血薄且怕被贴脸，绝不放部署序末位；末位让给重装或承伤近卫。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "敌人会优先攻击最后部署的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "特种": [
+      {
+        "claim": "特种横跨地面与远程，官方没有统一站位约束：它能不能上高台取决于具体干员的部署类型。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置远程单位，不可通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "位移类（推/拉）的站位是本图唯一能「把敌人挪出蓝门路线」的手段，位置要贴着可推的边或坑。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "即将袭来的敌人会聚集在模拟场上的两个侵入点",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "特种通常当第 8 人用：7 格固定体系 + 1 格按本局弱点补，站哪由这一把缺什么决定。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "单位部署数量受部署位限制（初始为8）",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "具体到某个特种能站几格，直接查 data/operator-ranges.json 的 [[dx,dy]] 格集，别照搬别人截图。",
+        "source": "https://prts.wiki/w/攻击范围",
+        "quote": "面前一格……即所在格+自身部署朝向正前方的1格",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    ],
+    "先锋": [
+      {
+        "claim": "先锋是近战位，只能落平地；它不能上高台。",
+        "source": "https://prts.wiki/w/基本地形",
+        "quote": "可以放置近战单位，可以通行",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      },
+      {
+        "claim": "通则：先锋要「早出场」——部署序靠上/靠左的位置先上场，让它尽早开始产费。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "按从上到下>从左到右的顺序部署。",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "反过来，先锋输出与生存都弱，不该占末位吃「优先攻击最后部署」的仇恨。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "敌人会优先攻击最后部署的干员",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      },
+      {
+        "claim": "COST 初始 0、上限 99：前 3 回合是先锋价值最高的窗口，第 4 回合后它多半要腾格给主力。",
+        "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+        "quote": "初始COST：0",
+        "capturedAt": "2026-11-10",
+        "confidence": "fact"
+      }
+    ]
+  },
+  "openingTemplates": [
+    {
+      "id": "T1",
+      "name": "速本叠层（公式化运营）",
+      "difficulty": "标准模拟 / 险境模拟起手",
+      "idea": "把钱花在凑同名换精锐上，靠精锐白嫖高 1 阶干员滚雪球，第 4 回合起连续升本，后期围绕本家盟约叠层。",
+      "steps": [
+        {
+          "claim": "第 1 回合：不存钱，把资金全换成低阶干员，优先拿能凑成同名的那些。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "本回合的剩余资金将清零",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 2 回合：继续凑 3 同名，触发精锐晋升——免费刷 3 名高 1 阶干员，本回合战力直接跳一级。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "立即在商店临时刷新3名高于调度中心等级1阶（最多6阶）的干员",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "第 3 回合：本回合开始把升级费当预算看（每回合 -1），钱花光前留出升级跳板。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "调度中心升级所需资金每回合-1（最低降为0）",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "第 4~5 回合：升到 3 级调度中心，解锁更高阶栏位；这一刻起精锐才有价值。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "增加刷新栏位、刷出更高等阶的干员",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 5~6 回合：跳到 4 级，进入「高阶干员 + 盟约叠层」的主循环（该思路在 2026-11-09 的莱塔尼亚运营一图流里被称为「公式化」）。",
+          "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+          "quote": "新版本轮椅盟约莱塔尼亚公式化运营一图流",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 7 回合后：不再乱买，钱只花在「补本家盟约层数」和「补精锐」上；多余资金用来刷新找成型件。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "消耗相应资金可以执行一次手动刷新（默认每次消耗1资金）",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        }
+      ],
+      "covenantPriority": [
+        {
+          "claim": "优先把资源压在一个「核心盟约」上而不是摊平；2026-11 的十大核心盟约一图流就是把叠层方式列成表的。",
+          "source": "https://www.bilibili.com/video/BV1BTWH6nEXK",
+          "quote": "看懂十大核心盟约叠层方式（一图流）",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "当期被玩家称为「轮椅」的是莱塔尼亚，公式化运营的默认目标。",
+          "source": "https://www.bilibili.com/video/BV1HaW46zEN2",
+          "quote": "新版本轮椅盟约莱塔尼亚公式化运营一图流",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "规程新增乌萨斯/莱塔尼亚/伊比利亚三系，选盟约时先确认自己的干员池撑不撑得起这个系。",
+          "source": "https://www.bilibili.com/video/BV1NK4x6JENw",
+          "quote": "卫戍协议第四期更新都有什么新内容",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        }
+      ],
+      "risk": {
+        "claim": "速本的空窗在第 4 回合前后：此时高阶没成型、低阶已经打过时，最容易漏怪，需要靠承伤位顶住。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "每回合最多扣除10点",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    },
+    {
+      "id": "T2",
+      "name": "小盟约抗线（苟分）",
+      "difficulty": "终极模拟 / 连打",
+      "idea": "不硬堆大盟约，用「精准 + 灵巧」这类小盟约加一个机械师抗线，成型快、下限高。",
+      "steps": [
+        {
+          "claim": "第 1~3 回合：只认精准/灵巧两系的低阶干员，凑同名换精锐，不为大盟约留牌。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "小盟约精准+灵巧，带个机械师稍微抗线",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 2 ~ 3 回合：优先把「机械师」这类抗线单位补上，先保证不漏怪再谈输出。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "小盟约精准+灵巧，带个机械师稍微抗线",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "第 4 回合起：按常规节奏升到 4 级调度中心，小盟约不依赖高阶层数，升本可以比速本流慢半拍。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "仅在调度中心等级 ≥ 干员所在等阶时",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "中后期：小盟约当副轴叠在主输出身上，主输出位留给成型最快的那套。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "后期就是战斗主力",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        }
+      ],
+      "covenantPriority": [
+        {
+          "claim": "大盟约除阿戈尔外普遍有硬伤、容易翻车，这是 2026-11-08 攻略作者的原话判断。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "大盟约除了阿戈尔，其他多少都带点小毛病，很容易翻车",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "小盟约的下限优势有实测口径：终极模拟十连里大盟约思路翻 2 场、小盟约思路 0 场。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "大盟约思路5场翻车两场，小盟约思路一场没翻",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        },
+        {
+          "claim": "注意这只是单个玩家、单次十连的样本，不是官方统计。",
+          "source": "https://www.bilibili.com/video/BV1wpWp6FEki",
+          "quote": "终极模拟十连打",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        }
+      ],
+      "risk": {
+        "claim": "小盟约上限低于成型大盟约，遇到必须靠爆发处理的领袖轮会吃力。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "每超时1秒扣除1目标生命值",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    },
+    {
+      "id": "T3",
+      "name": "保血稳健（入门 / 标准 9 回合）",
+      "difficulty": "入门协议 / 标准模拟",
+      "idea": "前 3 回合把血量和体系一起立住，不追叠层；标准模拟只有 9 回合，第 9 回合就是领袖轮，前面省下的血就是容错。",
+      "steps": [
+        {
+          "claim": "第 1 回合：买 1~2 名能站住路的近战 + 1 名远程，先把两条侵入点的接敌面铺开。",
+          "source": "https://prts.wiki/w/卫戍协议·规程/战场一览",
+          "quote": "即将袭来的敌人会聚集在模拟场上的两个侵入点",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 2 回合：补同名凑精锐；不要在这个回合点升级，精锐带来的高 1 阶干员更难处理。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "立即在商店临时刷新3名高于调度中心等级1阶",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 3 回合：确认承伤位在部署序末位（最下/最右），脆皮全部排在它前面。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "按从上到下>从左到右的顺序部署。",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 4 回合起：按 3 → 4 级节奏升本，但每回合先确认「这一回合不会漏怪」再决定升本还是补人。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "消耗资金可以为调度中心升级",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 9 回合：标准模拟就是领袖轮，全玩家生命合并、超时每秒 -1，前 8 回合攒的血在这里兑现。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "标准模拟只有9回合，第9回合即领袖轮",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        }
+      ],
+      "covenantPriority": [
+        {
+          "claim": "入门/标准阶段优先选「层数好叠、不依赖特定干员」的盟约，而不是当期最强的那一个。",
+          "source": "https://www.bilibili.com/video/BV1D2Wp6kEni",
+          "quote": "保姆级【入门】攻略合集",
+          "capturedAt": "2026-11-10",
+          "confidence": "inference"
+        },
+        {
+          "claim": "第 1~3 回合作战时长只有 45/45/55 秒，站位一次摆好、少做临场操作比什么都重要。",
+          "source": "https://prts.wiki/w/卫戍协议/帮助",
+          "quote": "各回合的作战时长上限如下",
+          "capturedAt": "2026-11-10",
+          "confidence": "fact"
+        }
+      ],
+      "risk": {
+        "claim": "保血流的天花板低：不叠层就打不动后期高防敌人，只能靠精锐质量硬顶。",
+        "source": "https://prts.wiki/w/卫戍协议/帮助",
+        "quote": "每名干员最多可佩戴2件装备。",
+        "capturedAt": "2026-11-10",
+        "confidence": "inference"
+      }
+    }
+  ],
+  "uncertainties": [
+    {
+      "topic": "8 职业的官方站位表",
+      "detail": "官方（PRTS 帮助 / 战场一览 / 规程页）没有任何「按职业分」的站位说明。本文件的 occupationPlacement 全部由地图机制 + 卡面「身前一格」类效果 + 部署顺序推导，结论方向可靠、细节未经验证。",
+      "severity": "high"
+    },
+    {
+      "topic": "部署顺序的文案矛盾",
+      "detail": "战场一览的入门协议剧情写「依照从左至右、从上到下的顺序」，帮助页则写 2026-03-14 起改为「从上到下>从左到右」。剧情文案应为旧版未更新。本文件以帮助页为准。",
+      "severity": "high"
+    },
+    {
+      "topic": "「优先攻击最后部署」的适用范围",
+      "detail": "只查到剧情一句「敌人会优先攻击最后部署的干员」，没查到它是否只对远程索敌生效、是否对所有敌人生效。由此推出的「承伤位放末位」是单点推断。",
+      "severity": "high"
+    },
+    {
+      "topic": "规程本期的资金/升级具体数值",
+      "detail": "官方页只说「有较大调整」，没给 1~9 回合的逐回合资金表与逐级升级费。网上流传的 4/5/8/11/12/13 来自第三方复刻或三期视频，一律未采用。",
+      "severity": "high"
+    },
+    {
+      "topic": "精锐晋升的「高 1 阶」上限细节",
+      "detail": "原文写「高于调度中心等级1阶（最多6阶）」，但没说明调度中心 6 级时是否还能刷、临时货架是否必出本家盟约。",
+      "severity": "medium"
+    },
+    {
+      "topic": "各图的具体格位与高台分布",
+      "detail": "只确认了 #01 用于入门/极速/标准/规程 1~4，#02~#06 用于险境/绝境/终极/规程 5~20，没有拿到逐图格子坐标，因此无法给出「第几行第几列」级别的站位图。",
+      "severity": "high"
+    },
+    {
+      "topic": "盟约强度排序",
+      "detail": "只有玩家口径（莱塔尼亚被称为轮椅、小盟约下限高），没有官方或大样本统计。排序会随序列Ⅱ（2026-12-26）变动。",
+      "severity": "medium"
+    },
+    {
+      "topic": "中文社区的数据源",
+      "detail": "NGA（bbs.nga.cn / ngabbs.com）403 拒绝访客，B 站搜索 API 412，均未能取到；可用的一手来源只剩 PRTS + B 站视频。",
+      "severity": "medium"
+    }
+  ]
+}

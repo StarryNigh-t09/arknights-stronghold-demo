@@ -1,0 +1,36 @@
+{
+  "season": "卫戍协议·规程 序列Ⅰ（2026-11-08 起）",
+  "updatedAt": "2026-11-10",
+  "note": "干员「干什么用」的速查表。来源：world/data/runflow.json 的 18 张强卡 + covenants.json 的盟约成员 + BV1BTWH6nEXK 的叠层机制。名字来自 B 站 AI 字幕，个别专名有错字（标了 ?），用途比名字可靠。",
+  "roles": {
+    "叠层核心": "给同盟约干员补层数，是伤害的来源",
+    "输出终端": "后期主要伤害，靠它清图打 boss",
+    "前排": "顶线抗伤，只需要顶住",
+    "奶": "缺奶时补位，顺带叠层",
+    "中转": "发转职道具 / 过渡，帮体系成型",
+    "运营": "帮助经济或刷新，不直接产生战力",
+    "通用叠层": "不挑盟约，什么体系都能塞"
+  },
+  "units": [
+    { "name": "塔露拉", "tier": 6, "role": "输出终端", "covenants": ["乌萨斯"], "why": "乌萨斯唯一救主：拿到道中基本无敌，拿不到整套乌萨斯就废；乌萨斯十张卡几乎都围绕她构筑", "skill": "二技能", "evidence": "BV1wpWp6FEki@368.5" },
+    { "name": "克莱门莎", "tier": 6, "role": "输出终端", "covenants": ["阿戈尔"], "why": "阿戈尔对 boss 的强输出点；放南门能叠 300 多层，单人抢 30% 输出就压过别人", "evidence": "runflow" },
+    { "name": "雷缪安", "tier": 6, "role": "输出终端", "covenants": ["精准"], "why": "后期主战力，跟迷迭香一起中后期炸图；只吃精准加成，没精准就是路边一条", "evidence": "runflow（名字可能有误）" },
+    { "name": "机械师", "tier": 6, "role": "前排", "covenants": [], "why": "前排首选，顶线效率高，只需要顶住就行", "skill": "二技能", "evidence": "runflow" },
+    { "name": "霍尔海雅", "tier": 4, "role": "叠层核心", "covenants": ["伊比利亚", "精准", "奥术"], "why": "中期核心叠层手，同时吃精准+奥术；伊比利亚体系关键核心；带二技能输出更高", "evidence": "runflow" },
+    { "name": "迷迭香", "tier": 5, "role": "叠层核心", "covenants": ["精准"], "why": "中期叠层手，中后期与雷缪安组合清图", "skill": "二技能", "evidence": "runflow" },
+    { "name": "黑键", "tier": 4, "role": "叠层核心", "covenants": ["莱塔尼亚"], "why": "莱塔尼亚叠层基础，四本起找牌就以黑键+霍尔海雅为核心；与奶羊是最佳叠层搭配", "skill": "二技能", "evidence": "runflow" },
+    { "name": "温蒂", "tier": 4, "role": "叠层核心", "covenants": [], "why": "与海默配合的叠层位，四阶免费/低成本战力（证据偏薄）", "skill": "三技能", "evidence": "runflow" },
+    { "name": "阿米娅", "tier": 5, "role": "通用叠层", "covenants": [], "why": "最强通用叠层：边上的人叠层时额外 +2，且不受上限影响；五本之后通用，boss 前下掉", "skill": "二技能", "evidence": "runflow" },
+    { "name": "水灯芯", "tier": 3, "role": "叠层核心", "covenants": ["维多利亚"], "why": "维多利亚小核心，攻速/灵巧体系关键，但经常抢不到", "skill": "二技能", "evidence": "runflow" },
+    { "name": "空弦", "tier": 2, "role": "叠层核心", "covenants": ["精准", "灵巧"], "why": "前期最强叠层手之一：围绕格雷伊同时叠精准+灵巧，是双小盟约开局的地基", "skill": "三技能", "evidence": "runflow" },
+    { "name": "格雷伊", "tier": 2, "role": "叠层核心", "covenants": ["精准", "灵巧"], "why": "精准+灵巧双盟约的围绕核心，前期叠层发动机", "skill": "二/一技能", "evidence": "runflow" },
+    { "name": "云记", "tier": 2, "role": "运营", "covenants": ["奇迹"], "why": "抢不到水灯芯就抓云记，好卡；还能叠「奇迹」帮运营", "skill": "二技能", "evidence": "runflow" },
+    { "name": "幽灵鲨", "tier": 1, "role": "前排", "covenants": ["阿戈尔"], "why": "阿戈尔前期把三只阿戈尔一吃，道中非常稳定", "skill": "一技能", "evidence": "runflow" },
+    { "name": "乌啾", "tier": 3, "role": "前排", "covenants": ["乌萨斯"], "why": "乌萨斯前期唯一固定层数来源兼生存保障，没它顶不住线", "skill": "二技能", "evidence": "runflow（应为「折桎」）" },
+    { "name": "车尔尼", "tier": 3, "role": "中转", "covenants": ["莱塔尼亚"], "why": "三本发莱塔尼亚转职道具（鼓），是莱塔尼亚成型的关键中转", "skill": "二技能", "evidence": "runflow" },
+    { "name": "华法林", "tier": 4, "role": "奶", "covenants": [], "why": "缺奶时的通用奶位，还能对着霍尔海雅起手叠奥术", "skill": "一技能", "evidence": "runflow" },
+    { "name": "哲亚", "tier": 1, "role": "叠层核心", "covenants": ["乌萨斯"], "why": "乌萨斯另一张前期固定叠层来源，配乌啾开三乌（名字疑为「折桎」）", "skill": "二技能", "evidence": "runflow" }
+  ],
+  "stacksWithAnyCovenant": ["赛雷娅", "M3", "华法林", "渡桥", "魔王", "阿米娅", "空弦", "夏利", "鑫源", "翠羽", "赫墨", "青雉", "帕拉斯", "吕谷"],
+  "stackNote": "这 13 张能给任意干员补层数，不挑盟约。叠层上限是张卡（薇薇安娜：提升同盟约干员本回合叠层上限），早叠比叠得狠值钱。"
+}

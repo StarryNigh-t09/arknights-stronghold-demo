@@ -1,0 +1,15 @@
+import { shot, state, deckBadges, drag, swipe, sleep, tapRaw } from './_place-lib.mjs';
+const px = 1405, py = 870, tx = 1290, ty = 440;
+const b0 = deckBadges(shot('t1-deck'));
+console.log('DECK0', JSON.stringify(b0));
+drag(px, py, tx, ty, 600, 420);
+await sleep(320);
+const a = shot('t1-a');
+const s1 = state(a);
+console.log('PENDING', JSON.stringify(s1));
+swipe(tx, ty - 50, tx, ty - 200, 400);
+await sleep(650);
+const b = shot('t1-b');
+const s2 = state(b);
+const b1 = deckBadges(b);
+console.log('AFTER', JSON.stringify({ state: s2, deck: b1.length, badges: b1 }));

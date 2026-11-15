@@ -1,0 +1,15 @@
+import { dragHold, scanDeckChips } from '../lib/run.js';
+import { screenshot } from '../lib/adb.js';
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+const before = await scanDeckChips();
+console.log('chips', JSON.stringify(before.chips.map(c=>({x:c.x,y:c.y}))));
+await dragHold([1257, 590], [1390, 694], { holdStartMs: 450, holdMs: 800, steps: 12, stepMs: 45 });
+await new Promise(r=>setTimeout(r,1200));
+const shot = await screenshot();
+const p = '../_g2.png';
+fs.writeFileSync(p, shot);
+spawnSync('python', ['sidecar/equip.py', p, '../_g2e.json'], { stdio: 'ignore' });
+spawnSync('python', ['sidecar/deck.py', p, '../_g2d.json'], { stdio: 'ignore' });
+console.log('equip', fs.readFileSync('../_g2e.json','utf8').slice(0,400));
+console.log('deck', fs.readFileSync('../_g2d.json','utf8').slice(0,400));

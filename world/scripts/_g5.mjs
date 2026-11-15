@@ -1,0 +1,12 @@
+import { tapAt } from '../lib/run.js';
+import { screenshot } from '../lib/adb.js';
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+await tapAt([500, 700]);
+await new Promise(r=>setTimeout(r,1800));
+const p = '../_g5.png';
+fs.writeFileSync(p, await screenshot());
+spawnSync('python', ['sidecar/deck.py', p, '../_g5d.json'], { stdio: 'ignore' });
+spawnSync('python', ['sidecar/equip.py', p, '../_g5e.json'], { stdio: 'ignore' });
+console.log('deck', fs.readFileSync('../_g5d.json','utf8').slice(0,500));
+console.log('equip', fs.readFileSync('../_g5e.json','utf8').slice(0,400));

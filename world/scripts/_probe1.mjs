@@ -1,0 +1,15 @@
+import { POINTS, tapAt, sleep, scanDeckChips, scanFreeTiles, peek } from '../lib/run.js'
+import { probeState } from '../lib/ocr.js'
+const t0 = Date.now()
+await tapAt(POINTS.collapse, 1200, '折叠商店')
+const pr1 = await probeState()
+console.log('FOLD', JSON.stringify(pr1), Date.now() - t0, 'ms')
+let t = Date.now()
+const sc = await scanDeckChips()
+console.log('CHIPS', Date.now() - t, 'ms', JSON.stringify(sc.chips.map((c) => [c.x, c.y])))
+t = Date.now()
+const ft = await scanFreeTiles()
+console.log('FREE', Date.now() - t, 'ms ok=', ft.ok, 'n=', (ft.tiles || []).length, ft.error || '')
+console.log('TILES', JSON.stringify(ft.tiles || []))
+const st = await peek()
+console.log('SCREEN', st.state)

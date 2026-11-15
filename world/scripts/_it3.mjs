@@ -1,0 +1,10 @@
+import { screenshot, tap } from '../lib/adb.js';
+import { writeFileSync } from 'node:fs';
+const save = (n, b) => writeFileSync('../_iu-' + n + '.png', b);
+tap(478, 470); await new Promise(r => setTimeout(r, 250)); tap(478, 470);
+await new Promise(r => setTimeout(r, 1500));
+save('a', await screenshot());
+tap(1450, 470); await new Promise(r => setTimeout(r, 1200));
+save('b', await screenshot());
+console.log('ok');
+process.exit(0);

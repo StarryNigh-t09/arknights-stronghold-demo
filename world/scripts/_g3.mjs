@@ -1,0 +1,12 @@
+import { screenshot } from '../lib/adb.js';
+import { execSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+const p = '../_g3.png';
+spawnSync('C:/Program Files/Netease/MuMu/nx_main/adb.exe', ['-s','127.0.0.1:16416','shell','input','keyevent','4'], { stdio: 'ignore' });
+await new Promise(r=>setTimeout(r,1500));
+fs.writeFileSync(p, await screenshot());
+spawnSync('python', ['sidecar/equip.py', p, '../_g3e.json'], { stdio: 'ignore' });
+spawnSync('python', ['sidecar/deck.py', p, '../_g3d.json'], { stdio: 'ignore' });
+console.log('equip', fs.readFileSync('../_g3e.json','utf8').slice(0,400));
+console.log('deck', fs.readFileSync('../_g3d.json','utf8').slice(0,400));

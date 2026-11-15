@@ -1,0 +1,2862 @@
+[
+ {
+  "n": "折桠",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 219015,
+  "bbox": [
+   319,
+   418,
+   659,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0815,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 9,
+  "diff_base": 8.752,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "艾丝黛尔",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 170397,
+  "bbox": [
+   365,
+   427,
+   625,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0627,
+  "diff_battle": 0.157,
+  "maxdiff_battle": 252,
+  "diff_base": 6.654,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "幽灵鲨",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 200164,
+  "bbox": [
+   345,
+   424,
+   783,
+   816
+  ],
+  "cornerA": 0,
+  "cov": 0.098,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 9.502,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "野鬃",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 265374,
+  "bbox": [
+   147,
+   299,
+   698,
+   799
+  ],
+  "cornerA": 0,
+  "cov": 0.1108,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 11.943,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "慕斯",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 153617,
+  "bbox": [
+   378,
+   423,
+   640,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0541,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.44,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "角峰",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 173112,
+  "bbox": [
+   327,
+   375,
+   688,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0771,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.897,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "灰喉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 197188,
+  "bbox": [
+   317,
+   404,
+   655,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0747,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 8.215,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "深靛",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 229142,
+  "bbox": [
+   338,
+   393,
+   767,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0812,
+  "diff_battle": 7.278,
+  "maxdiff_battle": 255,
+  "diff_base": 8.715,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "卡达",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 171962,
+  "bbox": [
+   383,
+   415,
+   786,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0596,
+  "diff_battle": 5.134,
+  "maxdiff_battle": 255,
+  "diff_base": 6.693,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "摆渡人",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 267172,
+  "bbox": [
+   300,
+   365,
+   780,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0984,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 11.015,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "夏栎",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 253053,
+  "bbox": [
+   308,
+   353,
+   618,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0898,
+  "diff_battle": 7.172,
+  "maxdiff_battle": 255,
+  "diff_base": 9.373,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "杰克",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 142728,
+  "bbox": [
+   403,
+   420,
+   623,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.046,
+  "diff_battle": 5.643,
+  "maxdiff_battle": 255,
+  "diff_base": 5.663,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "霜叶",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 173524,
+  "bbox": [
+   362,
+   323,
+   599,
+   807
+  ],
+  "cornerA": 0,
+  "cov": 0.0645,
+  "diff_battle": 0.016,
+  "maxdiff_battle": 36,
+  "diff_base": 6.75,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "拜松",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 178544,
+  "bbox": [
+   308,
+   426,
+   606,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0706,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 8.378,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "褐果",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 169559,
+  "bbox": [
+   413,
+   428,
+   637,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0547,
+  "diff_battle": 0.001,
+  "maxdiff_battle": 64,
+  "diff_base": 5.933,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "烈夏",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 218162,
+  "bbox": [
+   290,
+   415,
+   758,
+   812
+  ],
+  "cornerA": 0,
+  "cov": 0.0784,
+  "diff_battle": 5.285,
+  "maxdiff_battle": 255,
+  "diff_base": 8.461,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "陨星",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 156051,
+  "bbox": [
+   346,
+   438,
+   728,
+   800
+  ],
+  "cornerA": 0,
+  "cov": 0.067,
+  "diff_battle": 0.166,
+  "maxdiff_battle": 253,
+  "diff_base": 7.15,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "拉普兰德",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 161562,
+  "bbox": [
+   361,
+   417,
+   692,
+   815
+  ],
+  "cornerA": 0,
+  "cov": 0.0651,
+  "diff_battle": 2.813,
+  "maxdiff_battle": 255,
+  "diff_base": 6.929,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "地灵",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 203702,
+  "bbox": [
+   361,
+   361,
+   814,
+   800
+  ],
+  "cornerA": 0,
+  "cov": 0.0754,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 8.334,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "折光",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 203118,
+  "bbox": [
+   343,
+   363,
+   771,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0817,
+  "diff_battle": 4.528,
+  "maxdiff_battle": 255,
+  "diff_base": 7.719,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "蓝毒",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 147910,
+  "bbox": [
+   392,
+   424,
+   611,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0535,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.171,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "泡泡",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 198134,
+  "bbox": [
+   230,
+   393,
+   571,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.1034,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 10.237,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "莎草",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 213164,
+  "bbox": [
+   302,
+   362,
+   593,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0758,
+  "diff_battle": 0.165,
+  "maxdiff_battle": 128,
+  "diff_base": 8.052,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "雪猎",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 196902,
+  "bbox": [
+   374,
+   435,
+   656,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0656,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 21,
+  "diff_base": 7.372,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "砾",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 159655,
+  "bbox": [
+   348,
+   420,
+   690,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0614,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.242,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "复奏",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 194204,
+  "bbox": [
+   339,
+   381,
+   610,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0692,
+  "diff_battle": 4.579,
+  "maxdiff_battle": 255,
+  "diff_base": 7.144,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "奥斯塔",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 198622,
+  "bbox": [
+   332,
+   417,
+   675,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0819,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 8.596,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "Miss.Christine",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 106850,
+  "bbox": [
+   255,
+   535,
+   645,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.043,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 3.974,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "哈洛德",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 172109,
+  "bbox": [
+   382,
+   400,
+   606,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0585,
+  "diff_battle": 0.001,
+  "maxdiff_battle": 64,
+  "diff_base": 6.354,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "云迹",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 180790,
+  "bbox": [
+   355,
+   421,
+   665,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0644,
+  "diff_battle": 4.768,
+  "maxdiff_battle": 255,
+  "diff_base": 6.87,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "蛇屠箱",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 179946,
+  "bbox": [
+   341,
+   411,
+   610,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.069,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.336,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "波登可",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 175586,
+  "bbox": [
+   349,
+   340,
+   600,
+   807
+  ],
+  "cornerA": 0,
+  "cov": 0.0674,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 7.187,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "承曦格雷伊",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 208879,
+  "bbox": [
+   334,
+   430,
+   616,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0709,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.866,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "锡人",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 157425,
+  "bbox": [
+   336,
+   398,
+   644,
+   800
+  ],
+  "cornerA": 0,
+  "cov": 0.0567,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.091,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "宴",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 187018,
+  "bbox": [
+   313,
+   431,
+   663,
+   809
+  ],
+  "cornerA": 0,
+  "cov": 0.0606,
+  "diff_battle": 5.73,
+  "maxdiff_battle": 255,
+  "diff_base": 7.632,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "渡桥",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 183446,
+  "bbox": [
+   234,
+   410,
+   627,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0673,
+  "diff_battle": 4.851,
+  "maxdiff_battle": 255,
+  "diff_base": 7.901,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "矩",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 221352,
+  "bbox": [
+   306,
+   342,
+   647,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0816,
+  "diff_battle": 3.03,
+  "maxdiff_battle": 255,
+  "diff_base": 8.685,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "星极",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 177188,
+  "bbox": [
+   355,
+   421,
+   747,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0616,
+  "diff_battle": 4.67,
+  "maxdiff_battle": 255,
+  "diff_base": 6.626,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "瑰盐",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 226467,
+  "bbox": [
+   251,
+   398,
+   655,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0754,
+  "diff_battle": 0.422,
+  "maxdiff_battle": 255,
+  "diff_base": 8.224,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "真理",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 155204,
+  "bbox": [
+   399,
+   415,
+   637,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0556,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.267,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "铸铁",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 189385,
+  "bbox": [
+   380,
+   415,
+   870,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0692,
+  "diff_battle": 0.069,
+  "maxdiff_battle": 106,
+  "diff_base": 8.575,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "星源",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 203610,
+  "bbox": [
+   339,
+   380,
+   676,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.074,
+  "diff_battle": 5.977,
+  "maxdiff_battle": 255,
+  "diff_base": 7.574,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "安哲拉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 147719,
+  "bbox": [
+   375,
+   518,
+   825,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.055,
+  "diff_battle": 0.132,
+  "maxdiff_battle": 238,
+  "diff_base": 7.342,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "车尔尼",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 220244,
+  "bbox": [
+   366,
+   336,
+   666,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0883,
+  "diff_battle": 4.918,
+  "maxdiff_battle": 255,
+  "diff_base": 9.749,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "卡涅利安",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 172873,
+  "bbox": [
+   376,
+   383,
+   627,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0623,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 6.561,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "乌啾",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 198620,
+  "bbox": [
+   343,
+   404,
+   597,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0704,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 7.341,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "海沫",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 216164,
+  "bbox": [
+   261,
+   413,
+   610,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.075,
+  "diff_battle": 0.059,
+  "maxdiff_battle": 255,
+  "diff_base": 8.668,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "旅骨",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 217053,
+  "bbox": [
+   261,
+   423,
+   615,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0765,
+  "diff_battle": 0.38,
+  "maxdiff_battle": 255,
+  "diff_base": 7.921,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "风絮",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 234313,
+  "bbox": [
+   344,
+   381,
+   632,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0796,
+  "diff_battle": 0.656,
+  "maxdiff_battle": 223,
+  "diff_base": 8.249,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "极光",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 175119,
+  "bbox": [
+   398,
+   422,
+   658,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0814,
+  "diff_battle": 3.012,
+  "maxdiff_battle": 255,
+  "diff_base": 8.801,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "耶拉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 175156,
+  "bbox": [
+   217,
+   417,
+   581,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0695,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 7.599,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "初雪",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 193272,
+  "bbox": [
+   348,
+   408,
+   633,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0736,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 5,
+  "diff_base": 7.805,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "深巡",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 196527,
+  "bbox": [
+   336,
+   359,
+   578,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0718,
+  "diff_battle": 5.024,
+  "maxdiff_battle": 255,
+  "diff_base": 7.334,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "斯卡蒂",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 167167,
+  "bbox": [
+   391,
+   411,
+   691,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0692,
+  "diff_battle": 3.203,
+  "maxdiff_battle": 255,
+  "diff_base": 8.192,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "瑕光",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 243364,
+  "bbox": [
+   306,
+   399,
+   636,
+   815
+  ],
+  "cornerA": 0,
+  "cov": 0.0949,
+  "diff_battle": 7.359,
+  "maxdiff_battle": 255,
+  "diff_base": 9.96,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "忍冬",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 213213,
+  "bbox": [
+   366,
+   376,
+   811,
+   810
+  ],
+  "cornerA": 0,
+  "cov": 0.0796,
+  "diff_battle": 4.864,
+  "maxdiff_battle": 255,
+  "diff_base": 8.111,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "伺夜",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 188929,
+  "bbox": [
+   359,
+   389,
+   649,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0664,
+  "diff_battle": 4.177,
+  "maxdiff_battle": 255,
+  "diff_base": 7.341,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "水灯心",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 197608,
+  "bbox": [
+   326,
+   450,
+   604,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0676,
+  "diff_battle": 1.226,
+  "maxdiff_battle": 231,
+  "diff_base": 7.879,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "空弦",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 247919,
+  "bbox": [
+   304,
+   390,
+   727,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0888,
+  "diff_battle": 0.194,
+  "maxdiff_battle": 255,
+  "diff_base": 9.64,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "吉星",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 206126,
+  "bbox": [
+   351,
+   382,
+   741,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.072,
+  "diff_battle": 7.877,
+  "maxdiff_battle": 255,
+  "diff_base": 7.461,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "伊桑",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 147049,
+  "bbox": [
+   314,
+   439,
+   601,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0547,
+  "diff_battle": 3.854,
+  "maxdiff_battle": 255,
+  "diff_base": 6.688,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "罗比菈塔",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 170867,
+  "bbox": [
+   346,
+   425,
+   633,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0704,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.343,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "乌有",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 186307,
+  "bbox": [
+   359,
+   404,
+   650,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0669,
+  "diff_battle": 5.06,
+  "maxdiff_battle": 255,
+  "diff_base": 7.557,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "历阵锐枪芬",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 185233,
+  "bbox": [
+   352,
+   388,
+   806,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0648,
+  "diff_battle": 4.879,
+  "maxdiff_battle": 255,
+  "diff_base": 7.204,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "凯瑟琳",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 153461,
+  "bbox": [
+   408,
+   403,
+   609,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0506,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 2,
+  "diff_base": 5.705,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "盟约·辅助干员",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 153231,
+  "bbox": [
+   300,
+   433,
+   624,
+   813
+  ],
+  "cornerA": 0,
+  "cov": 0.0568,
+  "diff_battle": 5.291,
+  "maxdiff_battle": 255,
+  "diff_base": 5.291,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "风丸",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 177897,
+  "bbox": [
+   362,
+   405,
+   692,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0568,
+  "diff_battle": 0.362,
+  "maxdiff_battle": 255,
+  "diff_base": 6.226,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "至简",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 162999,
+  "bbox": [
+   391,
+   428,
+   709,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0599,
+  "diff_battle": 3.981,
+  "maxdiff_battle": 255,
+  "diff_base": 6.302,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "奥尔佳",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 194336,
+  "bbox": [
+   303,
+   401,
+   617,
+   812
+  ],
+  "cornerA": 0,
+  "cov": 0.0764,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 8.239,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "青枳",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 200683,
+  "bbox": [
+   356,
+   401,
+   722,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0728,
+  "diff_battle": 0.066,
+  "maxdiff_battle": 44,
+  "diff_base": 8.16,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "黑键",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 176493,
+  "bbox": [
+   304,
+   353,
+   677,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0727,
+  "diff_battle": 4.35,
+  "maxdiff_battle": 255,
+  "diff_base": 7.356,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "艾雅法拉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 193993,
+  "bbox": [
+   330,
+   407,
+   701,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.07,
+  "diff_battle": 5.028,
+  "maxdiff_battle": 255,
+  "diff_base": 7.681,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "赫拉格",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 213077,
+  "bbox": [
+   267,
+   355,
+   661,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0863,
+  "diff_battle": 5.151,
+  "maxdiff_battle": 255,
+  "diff_base": 8.481,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "维伊",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 212443,
+  "bbox": [
+   334,
+   364,
+   693,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0742,
+  "diff_battle": 0.242,
+  "maxdiff_battle": 93,
+  "diff_base": 7.72,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "温蒂",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 220649,
+  "bbox": [
+   304,
+   364,
+   644,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0823,
+  "diff_battle": 5.065,
+  "maxdiff_battle": 255,
+  "diff_base": 10.164,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "流明",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 208972,
+  "bbox": [
+   324,
+   382,
+   654,
+   818
+  ],
+  "cornerA": 0,
+  "cov": 0.071,
+  "diff_battle": 5.657,
+  "maxdiff_battle": 255,
+  "diff_base": 8.017,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "余",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 270160,
+  "bbox": [
+   247,
+   387,
+   689,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0952,
+  "diff_battle": 1.228,
+  "maxdiff_battle": 255,
+  "diff_base": 11.082,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "森蚺",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 220594,
+  "bbox": [
+   305,
+   449,
+   690,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0774,
+  "diff_battle": 6.537,
+  "maxdiff_battle": 255,
+  "diff_base": 8.36,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "灵知",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 171866,
+  "bbox": [
+   372,
+   391,
+   643,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.07,
+  "diff_battle": 2.373,
+  "maxdiff_battle": 255,
+  "diff_base": 6.168,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "归溟幽灵鲨",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 271616,
+  "bbox": [
+   303,
+   381,
+   788,
+   807
+  ],
+  "cornerA": 0,
+  "cov": 0.1014,
+  "diff_battle": 8.288,
+  "maxdiff_battle": 255,
+  "diff_base": 11.589,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "水月",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 201621,
+  "bbox": [
+   248,
+   414,
+   611,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0641,
+  "diff_battle": 0.07,
+  "maxdiff_battle": 179,
+  "diff_base": 7.545,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "远牙",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 242910,
+  "bbox": [
+   334,
+   351,
+   737,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0817,
+  "diff_battle": 5.1,
+  "maxdiff_battle": 255,
+  "diff_base": 8.87,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "玛恩纳",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 169736,
+  "bbox": [
+   381,
+   368,
+   647,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0645,
+  "diff_battle": 3.324,
+  "maxdiff_battle": 255,
+  "diff_base": 6.227,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "涤火杰西卡",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 210766,
+  "bbox": [
+   307,
+   354,
+   614,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0846,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 8.83,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "白铁",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 178605,
+  "bbox": [
+   385,
+   382,
+   676,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0601,
+  "diff_battle": 4.699,
+  "maxdiff_battle": 255,
+  "diff_base": 6.911,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "斥罪",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 167000,
+  "bbox": [
+   361,
+   397,
+   616,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0624,
+  "diff_battle": 4.197,
+  "maxdiff_battle": 255,
+  "diff_base": 6.813,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "W",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 152287,
+  "bbox": [
+   353,
+   412,
+   619,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0574,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 6.466,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "霍尔海雅",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 254570,
+  "bbox": [
+   302,
+   335,
+   723,
+   806
+  ],
+  "cornerA": 0,
+  "cov": 0.0994,
+  "diff_battle": 3.59,
+  "maxdiff_battle": 255,
+  "diff_base": 10.574,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "山",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 217776,
+  "bbox": [
+   233,
+   389,
+   602,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0938,
+  "diff_battle": 11.227,
+  "maxdiff_battle": 255,
+  "diff_base": 10.936,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "淬羽赫默",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 216033,
+  "bbox": [
+   324,
+   408,
+   676,
+   845
+  ],
+  "cornerA": 0,
+  "cov": 0.0711,
+  "diff_battle": 0.059,
+  "maxdiff_battle": 118,
+  "diff_base": 7.783,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "赫德雷",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 197081,
+  "bbox": [
+   319,
+   406,
+   706,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0764,
+  "diff_battle": 5.184,
+  "maxdiff_battle": 255,
+  "diff_base": 8.492,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "夜莺",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 200880,
+  "bbox": [
+   343,
+   334,
+   685,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0767,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 8.317,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "仇白",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 198347,
+  "bbox": [
+   354,
+   386,
+   794,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0748,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 7.843,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "异客",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 258739,
+  "bbox": [
+   282,
+   351,
+   685,
+   815
+  ],
+  "cornerA": 0,
+  "cov": 0.0976,
+  "diff_battle": 5.319,
+  "maxdiff_battle": 255,
+  "diff_base": 10.069,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "安洁莉娜",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 221657,
+  "bbox": [
+   298,
+   390,
+   710,
+   810
+  ],
+  "cornerA": 0,
+  "cov": 0.0786,
+  "diff_battle": 4.998,
+  "maxdiff_battle": 255,
+  "diff_base": 8.942,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "华法琳",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 190055,
+  "bbox": [
+   352,
+   440,
+   732,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0756,
+  "diff_battle": 0.157,
+  "maxdiff_battle": 252,
+  "diff_base": 7.545,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "寒檀",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 229821,
+  "bbox": [
+   231,
+   393,
+   676,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0974,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 9.442,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "纯烬艾雅法拉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 283643,
+  "bbox": [
+   342,
+   400,
+   834,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0893,
+  "diff_battle": 2.491,
+  "maxdiff_battle": 255,
+  "diff_base": 9.462,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "怒潮凛冬",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 265190,
+  "bbox": [
+   332,
+   393,
+   769,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0989,
+  "diff_battle": 0.776,
+  "maxdiff_battle": 181,
+  "diff_base": 10.428,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "艾丽妮",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 189313,
+  "bbox": [
+   296,
+   396,
+   699,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0766,
+  "diff_battle": 4.567,
+  "maxdiff_battle": 255,
+  "diff_base": 8.352,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "棘刺",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 191415,
+  "bbox": [
+   308,
+   420,
+   687,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0713,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.382,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "黍",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 215499,
+  "bbox": [
+   276,
+   369,
+   628,
+   850
+  ],
+  "cornerA": 0,
+  "cov": 0.0756,
+  "diff_battle": 1.674,
+  "maxdiff_battle": 255,
+  "diff_base": 8.54,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "佩佩",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 224687,
+  "bbox": [
+   278,
+   342,
+   635,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0826,
+  "diff_battle": 6.825,
+  "maxdiff_battle": 255,
+  "diff_base": 8.831,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "圣聆初雪",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 282673,
+  "bbox": [
+   298,
+   391,
+   706,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.105,
+  "diff_battle": 0.041,
+  "maxdiff_battle": 90,
+  "diff_base": 10.813,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "凛御银灰",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 251968,
+  "bbox": [
+   283,
+   392,
+   674,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0958,
+  "diff_battle": 5.895,
+  "maxdiff_battle": 255,
+  "diff_base": 11.484,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "歌蕾蒂娅",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 233502,
+  "bbox": [
+   183,
+   369,
+   640,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0853,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 2,
+  "diff_base": 8.868,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "乌尔比安",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 237034,
+  "bbox": [
+   270,
+   371,
+   668,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0984,
+  "diff_battle": 5.805,
+  "maxdiff_battle": 255,
+  "diff_base": 9.335,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "薇薇安娜",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 262205,
+  "bbox": [
+   185,
+   299,
+   661,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0973,
+  "diff_battle": 8.025,
+  "maxdiff_battle": 255,
+  "diff_base": 10.672,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "铃兰",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 224386,
+  "bbox": [
+   331,
+   404,
+   683,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0811,
+  "diff_battle": 0.674,
+  "maxdiff_battle": 255,
+  "diff_base": 8.305,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "贝洛内",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 192486,
+  "bbox": [
+   341,
+   392,
+   650,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0714,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 7.587,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "维娜·维多利亚",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 221731,
+  "bbox": [
+   306,
+   364,
+   687,
+   814
+  ],
+  "cornerA": 0,
+  "cov": 0.0813,
+  "diff_battle": 6.343,
+  "maxdiff_battle": 255,
+  "diff_base": 8.125,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "迷迭香",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 398746,
+  "bbox": [
+   197,
+   328,
+   742,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.1782,
+  "diff_battle": 12.267,
+  "maxdiff_battle": 255,
+  "diff_base": 18.083,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "隐德来希",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 204738,
+  "bbox": [
+   288,
+   302,
+   636,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0773,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 7,
+  "diff_base": 8.59,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "塞雷娅",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 204987,
+  "bbox": [
+   335,
+   422,
+   637,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0779,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 8.363,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "溯光星源",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 268705,
+  "bbox": [
+   199,
+   377,
+   701,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0889,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 6,
+  "diff_base": 9.892,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "老鲤",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 187615,
+  "bbox": [
+   298,
+   338,
+   615,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0811,
+  "diff_battle": 5.33,
+  "maxdiff_battle": 255,
+  "diff_base": 8.118,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "Mon3tr",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 182010,
+  "bbox": [
+   266,
+   371,
+   627,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0657,
+  "diff_battle": 0.041,
+  "maxdiff_battle": 128,
+  "diff_base": 7.604,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "可露希尔",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 182039,
+  "bbox": [
+   286,
+   428,
+   627,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0672,
+  "diff_battle": 0.053,
+  "maxdiff_battle": 92,
+  "diff_base": 7.463,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "“暴躁铁皮”",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 342651,
+  "bbox": [
+   248,
+   258,
+   801,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.1979,
+  "diff_battle": 0.799,
+  "maxdiff_battle": 255,
+  "diff_base": 0.799,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "鸿雪",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 259714,
+  "bbox": [
+   321,
+   374,
+   675,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0936,
+  "diff_battle": 7.82,
+  "maxdiff_battle": 255,
+  "diff_base": 9.337,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "焰尾",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 219364,
+  "bbox": [
+   395,
+   346,
+   682,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0736,
+  "diff_battle": 6.014,
+  "maxdiff_battle": 255,
+  "diff_base": 8.261,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "冻河",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 249221,
+  "bbox": [
+   304,
+   386,
+   728,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0905,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 0,
+  "diff_base": 9.201,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "阿米娅",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 155891,
+  "bbox": [
+   306,
+   370,
+   604,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0577,
+  "diff_battle": 4.104,
+  "maxdiff_battle": 255,
+  "diff_base": 4.104,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "引星棘刺",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 181414,
+  "bbox": [
+   300,
+   424,
+   600,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0662,
+  "diff_battle": 4.27,
+  "maxdiff_battle": 255,
+  "diff_base": 7.392,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "烛煌",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 266907,
+  "bbox": [
+   258,
+   369,
+   763,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0957,
+  "diff_battle": 1.947,
+  "maxdiff_battle": 255,
+  "diff_base": 10.416,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "浊心斯卡蒂",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 207155,
+  "bbox": [
+   249,
+   372,
+   614,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0761,
+  "diff_battle": 9.183,
+  "maxdiff_battle": 255,
+  "diff_base": 10.357,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "克莱门莎",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 221500,
+  "bbox": [
+   360,
+   382,
+   842,
+   809
+  ],
+  "cornerA": 0,
+  "cov": 0.0737,
+  "diff_battle": 0.11,
+  "maxdiff_battle": 255,
+  "diff_base": 8.008,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "耀骑士临光",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 237288,
+  "bbox": [
+   133,
+   382,
+   688,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.084,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 1,
+  "diff_base": 9.032,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "荒芜拉普兰德",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 198422,
+  "bbox": [
+   319,
+   416,
+   878,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0733,
+  "diff_battle": 0.829,
+  "maxdiff_battle": 255,
+  "diff_base": 8.176,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "酒神",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 174846,
+  "bbox": [
+   345,
+   384,
+   608,
+   808
+  ],
+  "cornerA": 0,
+  "cov": 0.0632,
+  "diff_battle": 0.175,
+  "maxdiff_battle": 161,
+  "diff_base": 7.057,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "逻各斯",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 191691,
+  "bbox": [
+   231,
+   345,
+   611,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0715,
+  "diff_battle": 5.588,
+  "maxdiff_battle": 255,
+  "diff_base": 7.372,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "真言",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 215540,
+  "bbox": [
+   292,
+   406,
+   632,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0758,
+  "diff_battle": 2.989,
+  "maxdiff_battle": 255,
+  "diff_base": 8.774,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "妮芙",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 251660,
+  "bbox": [
+   258,
+   369,
+   644,
+   805
+  ],
+  "cornerA": 0,
+  "cov": 0.0851,
+  "diff_battle": 0.669,
+  "maxdiff_battle": 183,
+  "diff_base": 9.169,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "遥",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 238675,
+  "bbox": [
+   342,
+   395,
+   736,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0785,
+  "diff_battle": 6.612,
+  "maxdiff_battle": 255,
+  "diff_base": 8.411,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "魔王",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 180050,
+  "bbox": [
+   333,
+   355,
+   586,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0646,
+  "diff_battle": 4.094,
+  "maxdiff_battle": 255,
+  "diff_base": 6.666,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "史尔特尔",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 195863,
+  "bbox": [
+   300,
+   391,
+   749,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0711,
+  "diff_battle": 0.457,
+  "maxdiff_battle": 255,
+  "diff_base": 7.696,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "锏",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 186800,
+  "bbox": [
+   325,
+   418,
+   699,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0694,
+  "diff_battle": 1.295,
+  "maxdiff_battle": 255,
+  "diff_base": 7.273,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "机械师",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 186280,
+  "bbox": [
+   323,
+   407,
+   599,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0638,
+  "diff_battle": 4.945,
+  "maxdiff_battle": 255,
+  "diff_base": 7.312,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "塔露拉",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 216366,
+  "bbox": [
+   269,
+   395,
+   797,
+   801
+  ],
+  "cornerA": 0,
+  "cov": 0.0732,
+  "diff_battle": 3.253,
+  "maxdiff_battle": 255,
+  "diff_base": 8.178,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "夕",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 203348,
+  "bbox": [
+   229,
+   418,
+   730,
+   804
+  ],
+  "cornerA": 0,
+  "cov": 0.0722,
+  "diff_battle": 5.536,
+  "maxdiff_battle": 255,
+  "diff_base": 8.112,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "蕾缪安",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 213512,
+  "bbox": [
+   338,
+   409,
+   746,
+   803
+  ],
+  "cornerA": 0,
+  "cov": 0.0792,
+  "diff_battle": 0.0,
+  "maxdiff_battle": 7,
+  "diff_base": 8.177,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "缪尔赛思",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 222095,
+  "bbox": [
+   319,
+   382,
+   675,
+   802
+  ],
+  "cornerA": 0,
+  "cov": 0.0896,
+  "diff_battle": 6.507,
+  "maxdiff_battle": 255,
+  "diff_base": 8.807,
+  "maxdiff_base": 255
+ },
+ {
+  "n": "帕拉斯",
+  "wh": [
+   1000,
+   1000
+  ],
+  "bytes": 202926,
+  "bbox": [
+   304,
+   365,
+   635,
+   826
+  ],
+  "cornerA": 0,
+  "cov": 0.076,
+  "diff_battle": 4.943,
+  "maxdiff_battle": 255,
+  "diff_base": 7.776,
+  "maxdiff_base": 255
+ }
+]
